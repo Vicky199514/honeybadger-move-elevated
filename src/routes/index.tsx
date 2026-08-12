@@ -1,24 +1,65 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/sections/Hero";
+import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import { FeaturedProduct } from "@/components/sections/FeaturedProduct";
+import { GalleryStrip } from "@/components/sections/GalleryStrip";
+import { BrandSection } from "@/components/sections/BrandSection";
+import { VideoSection } from "@/components/sections/VideoSection";
+import { SizeGuide } from "@/components/sections/SizeGuide";
+import { Faq } from "@/components/sections/Faq";
+import { StickyMobileCta } from "@/components/StickyMobileCta";
+import { formatPrice, heroProduct } from "@/data/products";
+import { faqs } from "@/data/faq";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "Honey Badger Outfits — Premium 4-Way Stretch Track Pants for Men";
+const description =
+  "Premium men's 4-way stretch lycra track pants built for movement, comfort and everyday wear. Order directly on WhatsApp.";
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        }),
+      },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+    <>
+      <Hero />
+      <FeatureGrid />
+      <FeaturedProduct />
+      <GalleryStrip />
+      <VideoSection />
+      <BrandSection />
+      <SizeGuide compact />
+      <Faq />
+      <StickyMobileCta
+        order={{ product: heroProduct.name, colour: heroProduct.colours[0]!.name, size: "M", quantity: 1 }}
+        price={formatPrice(heroProduct.price)}
+        meta="HB 4-Way Stretch Track Pant"
       />
-    </div>
+    </>
   );
 }

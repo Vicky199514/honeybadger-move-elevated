@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ShippingReturnsRouteImport } from './routes/shipping-returns'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SizeGuideRouteImport } from './routes/size-guide'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as TrackPantsIndexRouteImport } from './routes/track-pants.index'
+import { Route as TrackPantsSlugRouteImport } from './routes/track-pants.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShippingReturnsRoute = ShippingReturnsRouteImport.update({
+  id: '/shipping-returns',
+  path: '/shipping-returns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SizeGuideRoute = SizeGuideRouteImport.update({
+  id: '/size-guide',
+  path: '/size-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackPantsIndexRoute = TrackPantsIndexRouteImport.update({
+  id: '/track-pants/',
+  path: '/track-pants/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackPantsSlugRoute = TrackPantsSlugRouteImport.update({
+  id: '/track-pants/$slug',
+  path: '/track-pants/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
+  '/shipping-returns': typeof ShippingReturnsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/size-guide': typeof SizeGuideRoute
+  '/terms': typeof TermsRoute
+  '/track-pants/$slug': typeof TrackPantsSlugRoute
+  '/track-pants/': typeof TrackPantsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
+  '/shipping-returns': typeof ShippingReturnsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/size-guide': typeof SizeGuideRoute
+  '/terms': typeof TermsRoute
+  '/track-pants/$slug': typeof TrackPantsSlugRoute
+  '/track-pants': typeof TrackPantsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
+  '/shipping-returns': typeof ShippingReturnsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/size-guide': typeof SizeGuideRoute
+  '/terms': typeof TermsRoute
+  '/track-pants/$slug': typeof TrackPantsSlugRoute
+  '/track-pants/': typeof TrackPantsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/privacy'
+    | '/shipping-returns'
+    | '/sitemap.xml'
+    | '/size-guide'
+    | '/terms'
+    | '/track-pants/$slug'
+    | '/track-pants/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/privacy'
+    | '/shipping-returns'
+    | '/sitemap.xml'
+    | '/size-guide'
+    | '/terms'
+    | '/track-pants/$slug'
+    | '/track-pants'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/privacy'
+    | '/shipping-returns'
+    | '/sitemap.xml'
+    | '/size-guide'
+    | '/terms'
+    | '/track-pants/$slug'
+    | '/track-pants/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ShippingReturnsRoute: typeof ShippingReturnsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SizeGuideRoute: typeof SizeGuideRoute
+  TermsRoute: typeof TermsRoute
+  TrackPantsSlugRoute: typeof TrackPantsSlugRoute
+  TrackPantsIndexRoute: typeof TrackPantsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shipping-returns': {
+      id: '/shipping-returns'
+      path: '/shipping-returns'
+      fullPath: '/shipping-returns'
+      preLoaderRoute: typeof ShippingReturnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/size-guide': {
+      id: '/size-guide'
+      path: '/size-guide'
+      fullPath: '/size-guide'
+      preLoaderRoute: typeof SizeGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track-pants/': {
+      id: '/track-pants/'
+      path: '/track-pants'
+      fullPath: '/track-pants/'
+      preLoaderRoute: typeof TrackPantsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track-pants/$slug': {
+      id: '/track-pants/$slug'
+      path: '/track-pants/$slug'
+      fullPath: '/track-pants/$slug'
+      preLoaderRoute: typeof TrackPantsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  PrivacyRoute: PrivacyRoute,
+  ShippingReturnsRoute: ShippingReturnsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SizeGuideRoute: SizeGuideRoute,
+  TermsRoute: TermsRoute,
+  TrackPantsSlugRoute: TrackPantsSlugRoute,
+  TrackPantsIndexRoute: TrackPantsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
