@@ -3,6 +3,8 @@ import { Instagram, Mail } from "lucide-react";
 import { footerLinks, nav, site } from "@/data/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { WhatsAppGlyph } from "@/components/WhatsAppButton";
+import { LogoMark } from "@/components/Logo";
+
 
 export function Footer() {
   return (
