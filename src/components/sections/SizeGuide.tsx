@@ -8,7 +8,7 @@ export function SizeGuide({ compact = false }: { compact?: boolean }) {
         <SectionHeading
           eyebrow="Fit & measurements"
           title="Size guide"
-          copy="Measurements are in inches. All values are placeholders until final measurements are confirmed."
+          copy="Waist measurements in inches, unstretched. The elasticated drawstring waistband and 4-way stretch cover a range around each size."
           className="[&>h2]:text-3xl"
         />
 
@@ -18,7 +18,7 @@ export function SizeGuide({ compact = false }: { compact?: boolean }) {
             <caption className="sr-only">Track pant size chart</caption>
             <thead>
               <tr className="bg-ink text-bone">
-                {["Size", "Waist", "Length", "Recommended fit"].map((heading) => (
+                {["Size", "Waist", "Recommended fit"].map((heading) => (
                   <th key={heading} scope="col" className="eyebrow px-5 py-4 font-bold">
                     {heading}
                   </th>
@@ -32,7 +32,6 @@ export function SizeGuide({ compact = false }: { compact?: boolean }) {
                     {row.size}
                   </th>
                   <td className="px-5 py-4 text-sm text-muted-foreground">{row.waist}</td>
-                  <td className="px-5 py-4 text-sm text-muted-foreground">{row.length}</td>
                   <td className="px-5 py-4 text-sm text-muted-foreground">{row.fit}</td>
                 </tr>
               ))}
@@ -48,8 +47,6 @@ export function SizeGuide({ compact = false }: { compact?: boolean }) {
               <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
                 <dt className="text-muted-foreground">Waist</dt>
                 <dd className="text-right">{row.waist}</dd>
-                <dt className="text-muted-foreground">Length</dt>
-                <dd className="text-right">{row.length}</dd>
                 <dt className="text-muted-foreground">Fit</dt>
                 <dd className="text-right">{row.fit}</dd>
               </dl>
