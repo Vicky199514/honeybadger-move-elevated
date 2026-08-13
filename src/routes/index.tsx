@@ -3,6 +3,8 @@ import { Hero } from "@/components/sections/Hero";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { FeaturedProduct } from "@/components/sections/FeaturedProduct";
 import { GalleryStrip } from "@/components/sections/GalleryStrip";
+import { Colourways } from "@/components/sections/Colourways";
+
 import { BrandSection } from "@/components/sections/BrandSection";
 import { VideoSection } from "@/components/sections/VideoSection";
 import { SizeGuide } from "@/components/sections/SizeGuide";
