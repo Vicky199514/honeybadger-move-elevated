@@ -1,24 +1,23 @@
-import heroImage from "@/assets/hero-track-pant.jpg";
 import { ActionLink } from "@/components/ActionLink";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { heroProduct, formatPrice } from "@/data/products";
+import { heroProduct, formatPrice, productPhotos } from "@/data/products";
 
 export function Hero() {
   return (
     <section className="relative isolate bg-ink text-bone" aria-labelledby="hero-title">
       <div className="absolute inset-0 -z-10">
         <img
-          src={heroImage}
-          alt="Model wearing the HB 4-way stretch track pant mid-stride"
+          src={productPhotos.wardrobe}
+          alt="Honey Badger 4-way ultra-stretch track pants in olive, navy, black and sky blue hanging in a wardrobe"
           width={1440}
           height={1808}
           loading="eager"
           decoding="async"
           fetchPriority="high"
-          className="size-full object-cover object-[62%_center] opacity-90 md:object-[70%_center]"
+          className="size-full object-cover object-[68%_center] opacity-90 md:object-[75%_center]"
         />
         <div
-          className="absolute inset-0 bg-ink/72 md:bg-ink/45 md:[background:linear-gradient(90deg,rgba(10,10,10,0.94)_0%,rgba(10,10,10,0.72)_46%,rgba(10,10,10,0.1)_82%)]"
+          className="absolute inset-0 bg-ink/78 md:bg-ink/45 md:[background:linear-gradient(90deg,rgba(10,10,10,0.95)_0%,rgba(10,10,10,0.76)_46%,rgba(10,10,10,0.12)_82%)]"
           aria-hidden="true"
         />
       </div>
@@ -37,7 +36,8 @@ export function Hero() {
             Different<span className="text-accent">.</span>
           </h1>
           <p className="animate-in fade-in mt-6 max-w-md text-base leading-relaxed text-bone/75 duration-1000 sm:text-lg">
-            Premium stretch track pants built for movement, comfort and everyday wear.
+            4-way ultra-stretch lycra track pants. High elasticity, breathable, quick-dry — with a
+            secure zipped side pocket. Five essential colours.
           </p>
 
           <div className="animate-in fade-in mt-9 flex flex-col gap-3 duration-1000 sm:flex-row">
@@ -52,12 +52,20 @@ export function Hero() {
           <dl className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-hairline-ink pt-6 text-xs">
             <div>
               <dt className="text-bone/50 uppercase tracking-[0.18em]">Fabric</dt>
-              <dd className="mt-1 font-display font-bold tracking-wide text-bone">4-Way Stretch Lycra</dd>
+              <dd className="mt-1 font-display font-bold tracking-wide text-bone">
+                4-Way Ultra-Stretch Lycra
+              </dd>
             </div>
             <div>
               <dt className="text-bone/50 uppercase tracking-[0.18em]">Sizes</dt>
               <dd className="mt-1 font-display font-bold tracking-wide text-bone">
                 {heroProduct.sizes.join(" · ")}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-bone/50 uppercase tracking-[0.18em]">Colours</dt>
+              <dd className="mt-1 font-display font-bold tracking-wide text-bone">
+                {heroProduct.colours.length} essentials
               </dd>
             </div>
             <div>
