@@ -50,16 +50,18 @@ function Home() {
       <Hero />
       <FeatureGrid />
       <FeaturedProduct />
+      <Colourways />
       <GalleryStrip />
       <VideoSection />
       <BrandSection />
       <SizeGuide compact />
       <Faq />
       <StickyMobileCta
-        order={{ product: heroProduct.name, colour: heroProduct.colours[0]!.name, size: "M", quantity: 1 }}
+        order={{ product: heroProduct.name, colour: heroProduct.colours[0]!.name, size: "L", quantity: 1 }}
         price={formatPrice(heroProduct.price)}
-        meta="HB 4-Way Stretch Track Pant"
+        meta="4-Way Ultra-Stretch Lycra Track Pant"
       />
+
     </>
   );
 }
