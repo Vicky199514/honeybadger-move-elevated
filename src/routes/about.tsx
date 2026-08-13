@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import lifestyle from "@/assets/lifestyle-charcoal.jpg";
+import { productPhotos } from "@/data/products";
 import { BrandSection } from "@/components/sections/BrandSection";
 import { Reveal } from "@/components/Reveal";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -39,8 +39,8 @@ function About() {
         <div className="shell grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
           <Reveal>
             <img
-              src={lifestyle}
-              alt="Man wearing Honey Badger charcoal track pants on concrete steps"
+              src={productPhotos.wardrobe}
+              alt="Honey Badger 4-way ultra-stretch track pants in olive, navy, black and sky blue on a wardrobe rail"
               width={1024}
               height={1280}
               loading="lazy"
