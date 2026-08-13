@@ -38,11 +38,13 @@ export function Header() {
       <div className="shell flex items-center justify-between gap-4">
         <Link
           to="/"
-          className="font-display text-sm font-extrabold tracking-[0.24em] text-bone uppercase sm:text-base"
+          className="flex items-center gap-2.5 font-display text-sm font-extrabold tracking-[0.24em] text-bone uppercase sm:text-base"
           aria-label="Honey Badger Outfits — home"
         >
+          <LogoMark className="size-8 sm:size-9" />
           Honey<span className="text-accent">·</span>Badger
         </Link>
+
 
         <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
           {nav.map((item) => (
