@@ -43,7 +43,7 @@ export function VideoSection() {
               <>
                 <img
                   src={productPhotos.foldedStack}
-                  alt="HB track pant in motion — video preview"
+                  alt="Honey Badger 4-way ultra-stretch track pants folded, with the zip pocket shown"
                   width={1440}
                   height={1808}
                   loading="lazy"

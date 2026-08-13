@@ -13,9 +13,9 @@ import { StickyMobileCta } from "@/components/StickyMobileCta";
 import { formatPrice, heroProduct } from "@/data/products";
 import { faqs } from "@/data/faq";
 
-const title = "Honey Badger Outfits — Premium 4-Way Stretch Track Pants for Men";
+const title = "Honey Badger Outfits — 4-Way Ultra-Stretch Lycra Track Pants for Men";
 const description =
-  "Premium men's 4-way stretch lycra track pants built for movement, comfort and everyday wear. Order directly on WhatsApp.";
+  "Men's 4-way ultra-stretch lycra track pants in five colours — high elasticity, breathable, quick-dry, with a secure zipped side pocket. Order on WhatsApp.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

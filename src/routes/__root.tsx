@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Premium men's 4-way stretch lycra track pants built for movement, comfort and everyday wear.",
+          "Men's 4-way ultra-stretch lycra track pants built for movement, comfort and everyday wear.",
       },
       { property: "og:site_name", content: "Honey Badger Outfits" },
       { property: "og:type", content: "website" },

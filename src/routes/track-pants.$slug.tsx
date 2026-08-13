@@ -38,7 +38,7 @@ export const Route = createFileRoute("/track-pants/$slug")({
             name: product.name,
             description: product.description,
             brand: { "@type": "Brand", name: "Honey Badger Outfits" },
-            material: "4-way stretch lycra blend",
+            material: "4-way ultra-stretch lycra",
             offers: {
               "@type": "Offer",
               priceCurrency: "INR",

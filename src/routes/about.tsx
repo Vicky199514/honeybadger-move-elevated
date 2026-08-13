@@ -52,7 +52,7 @@ function About() {
             <h2 className="text-3xl sm:text-4xl">What we make</h2>
             <p className="leading-relaxed text-muted-foreground">
               Honey Badger Outfits is a men's clothing brand focused on comfortable, functional and
-              modern everyday wear. Our first product is a 4-way stretch lycra track pant designed
+              modern everyday wear. Our first product is a 4-way ultra-stretch lycra track pant designed
               for movement — light on the body, clean in shape and easy to wear every day.
             </p>
             <p className="leading-relaxed text-muted-foreground">
