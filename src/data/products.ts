@@ -1,9 +1,14 @@
-import blackFront from "@/assets/track-pant-black-front.jpg";
-import blackBack from "@/assets/track-pant-black-back.jpg";
-import detail from "@/assets/track-pant-detail.jpg";
-import fabricShot from "@/assets/track-pant-fabric.jpg";
-import navyFront from "@/assets/track-pant-navy-front.jpg";
-import lifestyleCharcoal from "@/assets/lifestyle-charcoal.jpg";
+import wardrobeAsset from "@/assets/wardrobe-colours.jpg.asset.json";
+import foldedStackAsset from "@/assets/folded-stack.png.asset.json";
+import rearPanelAsset from "@/assets/rear-panel-detail.png.asset.json";
+import specGuideAsset from "@/assets/spec-guide.png.asset.json";
+
+export const productPhotos = {
+  wardrobe: wardrobeAsset.url,
+  foldedStack: foldedStackAsset.url,
+  rearPanel: rearPanelAsset.url,
+  specGuide: specGuideAsset.url,
+};
 
 export type ProductImage = {
   src: string;
@@ -32,80 +37,71 @@ export type Product = {
   available: boolean;
 };
 
+/** The five essential colourways, as listed on the product spec sheet. */
+export const colourways = [
+  { name: "Black", hex: "#111111" },
+  { name: "Navy Blue", hex: "#1B2A4A" },
+  { name: "Olive Green", hex: "#4A5233" },
+  { name: "Charcoal Grey", hex: "#3A3A3C" },
+  { name: "Sky Blue", hex: "#8FB4D9" },
+];
+
 /**
  * Product catalogue. Add another track pant by appending one object —
  * every page, card and WhatsApp message reads from here.
- * Replace image imports in src/assets with your own photography.
  */
 export const products: Product[] = [
   {
     id: "hb-4way-track-pant",
     slug: "hb-4-way-stretch-track-pant",
-    name: "The HB 4-Way Stretch Track Pant",
-    subtitle: "Premium lycra blend · tapered fit",
+    name: "4-Way Ultra-Stretch Lycra Track Pant",
+    subtitle: "Five colourways · zipped right pocket · clean rear panel",
     description:
-      "A track pant built around one idea: nothing should restrict how you move. Four-way stretch lycra, a lightweight handfeel and a clean tapered line that works from the gym to the street.",
+      "Built around one idea: nothing should restrict how you move. Four-way ultra-stretch lycra with high elasticity, a breathable quick-dry handfeel, a secure zipped right pocket for your phone and a clean rear panel with no pockets for an uninterrupted line.",
     price: 1499, // PLACEHOLDER price
     images: [
-      { src: blackFront, alt: "HB 4-Way Stretch Track Pant in black, front view", ratio: "portrait" },
-      { src: blackBack, alt: "HB 4-Way Stretch Track Pant in black, back view", ratio: "portrait" },
-      { src: detail, alt: "Close-up of the ribbed ankle cuff and flatlock stitching", ratio: "landscape" },
-      { src: fabricShot, alt: "Four-way stretch lycra fabric stretched to show elasticity", ratio: "landscape" },
-      { src: lifestyleCharcoal, alt: "Model wearing the track pant in charcoal, seated on concrete steps", ratio: "portrait" },
+      {
+        src: wardrobeAsset.url,
+        alt: "Honey Badger track pants in olive, navy, black and sky blue hanging in a wardrobe",
+        ratio: "portrait",
+      },
+      {
+        src: foldedStackAsset.url,
+        alt: "Folded stack of 4-way ultra-stretch lycra track pants beside a pair showing the zipped side pocket",
+        ratio: "landscape",
+      },
+      {
+        src: rearPanelAsset.url,
+        alt: "Rear view of the black track pant showing the clean rear panel with no rear pockets and clean-seam construction",
+        ratio: "portrait",
+      },
+      {
+        src: specGuideAsset.url,
+        alt: "Specification guide showing the five colourways, zipped right pocket and open left pocket",
+        ratio: "landscape",
+      },
     ],
-    colours: [
-      { name: "Black", hex: "#111111" },
-      { name: "Charcoal", hex: "#3A3A3C" },
-      { name: "Navy", hex: "#1C2436" },
-    ],
-    sizes: ["S", "M", "L", "XL", "XXL"],
+    colours: colourways,
+    sizes: ["M", "L", "XL", "XXL"],
     features: [
-      "4-way stretch lycra blend",
-      "Lightweight, breathable knit",
-      "Elasticated waistband with drawcord",
-      "Two side pockets",
+      "4-way ultra-stretch lycra fabric",
+      "High elasticity — stretches in every direction",
+      "Breathable, quick-dry knit",
+      "Secure zipped pocket on the right",
+      "Convenient open pocket on the left",
+      "No rear pockets — clean rear panel",
+      "Clean-seam construction",
+      "Durable elasticated waistband with adjustable drawstring",
       "Ribbed ankle cuffs",
-      "Flatlock stitching at stress seams",
     ],
-    fabric: "4-way stretch lycra blend. PLACEHOLDER — exact composition and GSM to be confirmed.",
-    fit: "Tapered regular fit. Sits at the natural waist with a clean line through the leg. If you are between sizes, size up for a relaxed fit.",
+    fabric:
+      "4-way ultra-stretch lycra. High elasticity, breathable and quick-drying, with strong shape retention wash after wash.",
+    fit: "Tapered regular fit. Sits at the natural waist on a durable elasticated waistband with an adjustable drawstring. If you are between sizes, size up for a relaxed fit.",
     care: [
       "Machine wash cold with like colours",
       "Do not bleach",
       "Tumble dry low or line dry",
-      "Warm iron if needed — avoid direct heat on prints",
-    ],
-    delivery: "PLACEHOLDER — delivery timelines and shipping charges to be confirmed.",
-    available: true,
-  },
-  {
-    id: "hb-navy-track-pant",
-    slug: "hb-4-way-stretch-track-pant-navy",
-    name: "The HB Track Pant — Navy",
-    subtitle: "Premium lycra blend · tapered fit",
-    description:
-      "The same 4-way stretch construction in a deep navy that sits quietly with everything. Built for everyday wear.",
-    price: 1499, // PLACEHOLDER price
-    images: [
-      { src: navyFront, alt: "HB Track Pant in deep navy, front view", ratio: "portrait" },
-      { src: detail, alt: "Close-up of the ribbed ankle cuff and flatlock stitching", ratio: "landscape" },
-      { src: fabricShot, alt: "Four-way stretch lycra fabric stretched to show elasticity", ratio: "landscape" },
-    ],
-    colours: [{ name: "Navy", hex: "#1C2436" }],
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    features: [
-      "4-way stretch lycra blend",
-      "Lightweight, breathable knit",
-      "Elasticated waistband with drawcord",
-      "Two side pockets",
-      "Ribbed ankle cuffs",
-    ],
-    fabric: "4-way stretch lycra blend. PLACEHOLDER — exact composition and GSM to be confirmed.",
-    fit: "Tapered regular fit. Sits at the natural waist with a clean line through the leg.",
-    care: [
-      "Machine wash cold with like colours",
-      "Do not bleach",
-      "Tumble dry low or line dry",
+      "Warm iron if needed — avoid direct heat on the logo",
     ],
     delivery: "PLACEHOLDER — delivery timelines and shipping charges to be confirmed.",
     available: true,
