@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { nav } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { LogoMark } from "@/components/Logo";
+
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
