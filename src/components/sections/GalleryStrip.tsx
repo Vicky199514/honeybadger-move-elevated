@@ -1,10 +1,7 @@
-import lifestyle from "@/assets/lifestyle-charcoal.jpg";
-import hero from "@/assets/hero-track-pant.jpg";
-import fabric from "@/assets/track-pant-fabric.jpg";
-import detail from "@/assets/track-pant-detail.jpg";
 import { ActionLink } from "@/components/ActionLink";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
+import { productPhotos } from "@/data/products";
 
 export function GalleryStrip() {
   return (
@@ -12,9 +9,9 @@ export function GalleryStrip() {
       <div className="shell">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow="The campaign"
-            title="Worn, not styled."
-            copy="Shot the way the pant is actually used — moving, sitting, travelling."
+            eyebrow="The details"
+            title="Every side of it."
+            copy="Five colours on the rail, a clean rear panel and a zip pocket that actually holds your phone."
           />
           <ActionLink to="/track-pants" variant="outlineInk">
             Shop the range
@@ -25,8 +22,8 @@ export function GalleryStrip() {
           <Reveal className="md:col-span-7">
             <figure className="aspect-[4/5] overflow-hidden bg-secondary md:aspect-[4/4.6]">
               <img
-                src={lifestyle}
-                alt="Man in charcoal HB track pants seated on concrete steps"
+                src={productPhotos.wardrobe}
+                alt="Olive, navy, black and sky blue Honey Badger track pants hanging side by side"
                 width={1024}
                 height={1280}
                 loading="lazy"
@@ -40,8 +37,8 @@ export function GalleryStrip() {
             <Reveal delay={80}>
               <figure className="aspect-[4/3] overflow-hidden bg-secondary">
                 <img
-                  src={fabric}
-                  alt="Four-way stretch lycra fabric pulled to show elasticity"
+                  src={productPhotos.rearPanel}
+                  alt="Rear view of the black track pant showing the clean rear panel with no rear pockets"
                   width={1280}
                   height={960}
                   loading="lazy"
@@ -53,8 +50,8 @@ export function GalleryStrip() {
             <Reveal delay={160}>
               <figure className="aspect-[4/3] overflow-hidden bg-secondary">
                 <img
-                  src={detail}
-                  alt="Detail of the ribbed ankle cuff and stitching"
+                  src={productPhotos.specGuide}
+                  alt="Specification guide showing the zipped right pocket and open left pocket"
                   width={1280}
                   height={960}
                   loading="lazy"
@@ -68,13 +65,13 @@ export function GalleryStrip() {
           <Reveal delay={80} className="md:col-span-12">
             <figure className="aspect-[16/10] overflow-hidden bg-secondary md:aspect-[21/7]">
               <img
-                src={hero}
-                alt="Full-width campaign image of the HB track pant in motion"
+                src={productPhotos.foldedStack}
+                alt="Folded stack of 4-way ultra-stretch lycra track pants beside a pair showing the secure zip pocket"
                 width={1440}
-                height={1808}
+                height={900}
                 loading="lazy"
                 decoding="async"
-                className="size-full object-cover object-[center_32%] transition-transform duration-700 hover:scale-[1.02]"
+                className="size-full object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
               />
             </figure>
           </Reveal>

@@ -3,6 +3,8 @@ import { Instagram, Mail } from "lucide-react";
 import { footerLinks, nav, site } from "@/data/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { WhatsAppGlyph } from "@/components/WhatsAppButton";
+import { LogoMark } from "@/components/Logo";
+
 
 export function Footer() {
   return (
@@ -10,9 +12,11 @@ export function Footer() {
       <div className="shell">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <p className="font-display text-2xl font-extrabold tracking-[0.12em] text-bone uppercase">
+            <p className="flex items-center gap-3 font-display text-2xl font-extrabold tracking-[0.12em] text-bone uppercase">
+              <LogoMark className="size-10" />
               Honey Badger<span className="text-accent">.</span>
             </p>
+
             <p className="mt-4 max-w-xs text-sm leading-relaxed">
               Men's clothing focused on comfortable, functional and modern everyday wear.
             </p>

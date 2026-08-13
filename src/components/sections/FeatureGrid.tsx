@@ -1,26 +1,26 @@
-import { Feather, Move3d, MoveDiagonal, Sun } from "lucide-react";
+import { Lock, MoveDiagonal, Wind, Zap } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
 const features = [
   {
     icon: MoveDiagonal,
-    title: "4-Way Stretch",
-    copy: "Moves naturally with you.",
+    title: "High Elasticity",
+    copy: "4-way ultra-stretch lycra moves in every direction with you.",
   },
   {
-    icon: Feather,
-    title: "Lightweight",
-    copy: "Comfort without unnecessary weight.",
+    icon: Wind,
+    title: "Breathable",
+    copy: "Light, airy knit that stays comfortable all day.",
   },
   {
-    icon: Move3d,
-    title: "Flexible Fit",
-    copy: "Designed for movement.",
+    icon: Zap,
+    title: "Quick-Dry",
+    copy: "Dries fast after training, travel or a wash.",
   },
   {
-    icon: Sun,
-    title: "Everyday Wear",
-    copy: "Gym, travel or everyday use.",
+    icon: Lock,
+    title: "Zipped Pocket",
+    copy: "Secure zip pocket on the right, open pocket on the left.",
   },
 ];
 

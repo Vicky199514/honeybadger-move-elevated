@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import lifestyle from "@/assets/lifestyle-charcoal.jpg";
+import { productPhotos } from "@/data/products";
 import { BrandSection } from "@/components/sections/BrandSection";
 import { Reveal } from "@/components/Reveal";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -39,8 +39,8 @@ function About() {
         <div className="shell grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
           <Reveal>
             <img
-              src={lifestyle}
-              alt="Man wearing Honey Badger charcoal track pants on concrete steps"
+              src={productPhotos.wardrobe}
+              alt="Honey Badger 4-way ultra-stretch track pants in olive, navy, black and sky blue on a wardrobe rail"
               width={1024}
               height={1280}
               loading="lazy"
@@ -52,7 +52,7 @@ function About() {
             <h2 className="text-3xl sm:text-4xl">What we make</h2>
             <p className="leading-relaxed text-muted-foreground">
               Honey Badger Outfits is a men's clothing brand focused on comfortable, functional and
-              modern everyday wear. Our first product is a 4-way stretch lycra track pant designed
+              modern everyday wear. Our first product is a 4-way ultra-stretch lycra track pant designed
               for movement — light on the body, clean in shape and easy to wear every day.
             </p>
             <p className="leading-relaxed text-muted-foreground">

@@ -50,7 +50,7 @@ export function FeaturedProduct() {
         <Reveal delay={80}>
           <p className="eyebrow text-muted-foreground">The hero product</p>
           <h2 id="featured-title" className="mt-4 text-3xl sm:text-4xl lg:text-5xl">
-            The HB 4-Way Stretch Track Pant
+            {product.name}
           </h2>
           <p className="mt-5 max-w-prose leading-relaxed text-muted-foreground">
             {product.description}

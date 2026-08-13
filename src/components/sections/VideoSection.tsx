@@ -1,6 +1,6 @@
 import { Play } from "lucide-react";
 import { useState } from "react";
-import posterImage from "@/assets/hero-track-pant.jpg";
+import { productPhotos } from "@/data/products";
 import { Reveal } from "@/components/Reveal";
 
 /**
@@ -31,7 +31,7 @@ export function VideoSection() {
               <video
                 className="size-full object-cover"
                 src={VIDEO_SRC}
-                poster={posterImage}
+                poster={productPhotos.foldedStack}
                 controls
                 autoPlay
                 playsInline
@@ -42,8 +42,8 @@ export function VideoSection() {
             ) : (
               <>
                 <img
-                  src={posterImage}
-                  alt="HB track pant in motion — video preview"
+                  src={productPhotos.foldedStack}
+                  alt="Honey Badger 4-way ultra-stretch track pants folded, with the zip pocket shown"
                   width={1440}
                   height={1808}
                   loading="lazy"

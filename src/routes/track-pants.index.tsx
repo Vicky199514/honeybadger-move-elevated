@@ -5,9 +5,9 @@ import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { Faq } from "@/components/sections/Faq";
 import { products } from "@/data/products";
 
-const title = "Men's 4-Way Stretch Track Pants — Honey Badger Outfits";
+const title = "Men's 4-Way Ultra-Stretch Lycra Track Pants — Honey Badger Outfits";
 const description =
-  "Shop premium lycra 4-way stretch track pants for men. Lightweight, flexible and made for gym, travel and everyday wear.";
+  "Shop 4-way ultra-stretch lycra track pants for men in Black, Navy, Olive, Charcoal and Sky Blue. Sizes M to XXL, zipped side pocket.";
 
 export const Route = createFileRoute("/track-pants/")({
   head: () => ({
@@ -34,7 +34,7 @@ function TrackPants() {
             Track Pants<span className="text-accent">.</span>
           </h1>
           <p className="mt-5 max-w-md leading-relaxed text-bone/65">
-            One construction, built around 4-way stretch. Choose your colour and order in a message.
+            One construction, five colours, built around 4-way ultra-stretch lycra. Choose your colour and order in a message.
           </p>
         </div>
       </header>

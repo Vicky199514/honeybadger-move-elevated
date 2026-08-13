@@ -4,7 +4,7 @@ import { ActionLink } from "@/components/ActionLink";
 
 const title = "Track Pant Size Guide — Honey Badger Outfits";
 const description =
-  "Waist and length measurements for Honey Badger men's track pants, from S to XXL, plus how to measure and choose your size.";
+  "Waist and length measurements for Honey Badger men's track pants, from M to XXL, plus how to measure and choose your size.";
 
 export const Route = createFileRoute("/size-guide")({
   head: () => ({
@@ -29,8 +29,7 @@ function SizeGuidePage() {
           <p className="eyebrow text-accent">Fit</p>
           <h1 className="mt-4 text-[clamp(2.25rem,9vw,4.5rem)] leading-[0.92]">Size Guide</h1>
           <p className="mt-5 max-w-md leading-relaxed text-bone/65">
-            Measure once, order with confidence. Values below are placeholders until final
-            measurements are confirmed.
+            Measure once, order with confidence. M 30", L 32", XL 34", XXL 36–38" waist.
           </p>
           <ActionLink to="/track-pants" variant="outlineBone" className="mt-8">
             Shop Track Pants
