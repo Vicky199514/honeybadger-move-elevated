@@ -1,17 +1,60 @@
 import { Link } from "@tanstack/react-router";
-import { Check, Minus, Plus, Ruler, Truck } from "lucide-react";
+import { Check, Ruler, Truck } from "lucide-react";
 import { useState } from "react";
-import { formatPrice, type Product } from "@/data/products";
+import {
+  COD_FEE,
+  formatPrice,
+  orderTotal,
+  packSaving,
+  packs,
+  paymentMethods,
+  type PaymentMethod,
+  type Product,
+} from "@/data/products";
 import { cn } from "@/lib/utils";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { StickyMobileCta } from "@/components/StickyMobileCta";
 
 export function ProductDetails({ product }: { product: Product }) {
-  const [colour, setColour] = useState(product.colours[0]!.name);
+  const [packId, setPackId] = useState(packs[0]!.id);
+  const [colours, setColours] = useState<string[]>([product.colours[0]!.name]);
   const [size, setSize] = useState(product.sizes[1] ?? product.sizes[0]!);
-  const [quantity, setQuantity] = useState(1);
+  const [payment, setPayment] = useState<PaymentMethod>("prepaid");
 
-  const order = { product: product.name, colour, size, quantity };
+  const pack = packs.find((option) => option.id === packId) ?? packs[0]!;
+  const multi = pack.quantity > 1;
+  const total = orderTotal(pack, payment);
+  const paymentLabel = paymentMethods.find((method) => method.id === payment)!.label;
+
+  const toggleColour = (name: string) => {
+    if (!multi) {
+      setColours([name]);
+      return;
+    }
+    setColours((current) =>
+      current.includes(name)
+        ? current.filter((item) => item !== name)
+        : current.length >= pack.quantity
+          ? [...current.slice(1), name]
+          : [...current, name],
+    );
+  };
+
+  const selectPack = (id: string) => {
+    setPackId(id);
+    const next = packs.find((option) => option.id === id)!;
+    setColours((current) => (next.quantity === 1 ? current.slice(0, 1) : current.slice(0, next.quantity)));
+  };
+
+  const order = {
+    product: product.name,
+    pack: pack.label,
+    colour: colours.join(", "),
+    size,
+    quantity: pack.quantity,
+    payment: payment === "cod" ? `Cash on delivery (+${formatPrice(COD_FEE)})` : paymentLabel,
+    total: formatPrice(total),
+  };
 
   return (
     <div className="space-y-8">
@@ -19,28 +62,66 @@ export function ProductDetails({ product }: { product: Product }) {
         <h1 className="text-3xl leading-[0.95] sm:text-4xl">{product.name}</h1>
         <p className="mt-3 text-sm text-muted-foreground">{product.subtitle}</p>
         <p className="mt-5 font-display text-2xl font-extrabold">
-          {formatPrice(product.price)}
+          {formatPrice(total)}
           <span className="ml-2 align-middle font-body text-xs font-normal tracking-wide text-muted-foreground uppercase">
-            Price placeholder
+            {pack.label}
+            {payment === "cod" ? ` · incl. ${formatPrice(COD_FEE)} COD` : ""}
           </span>
         </p>
         <p className="mt-5 max-w-prose leading-relaxed text-muted-foreground">{product.description}</p>
       </div>
 
       <fieldset>
+        <legend className="eyebrow text-muted-foreground">Choose your option</legend>
+        <div className="mt-3 grid gap-2.5 sm:grid-cols-3">
+          {packs.map((option) => {
+            const saving = packSaving(option);
+            return (
+              <button
+                key={option.id}
+                type="button"
+                onClick={() => selectPack(option.id)}
+                aria-pressed={packId === option.id}
+                className={cn(
+                  "rounded-sm border p-4 text-left transition-colors",
+                  packId === option.id ? "border-ink bg-ink text-bone" : "border-border hover:border-ink",
+                )}
+              >
+                <span className="block font-display text-sm font-bold tracking-wide uppercase">
+                  {option.label}
+                </span>
+                <span className="mt-2 block font-display text-lg font-extrabold">
+                  {formatPrice(option.price)}
+                </span>
+                <span
+                  className={cn(
+                    "mt-1 block text-xs",
+                    packId === option.id ? "text-bone/65" : "text-muted-foreground",
+                  )}
+                >
+                  {saving > 0 ? `Save ${formatPrice(saving)} · ${option.note}` : option.note}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
+
+      <fieldset>
         <legend className="eyebrow text-muted-foreground">
-          Colour — <span className="text-foreground">{colour}</span>
+          {multi ? `Colours — pick ${pack.quantity} · ` : "Colour — "}
+          <span className="text-foreground">{colours.join(", ") || "select"}</span>
         </legend>
         <div className="mt-3 flex flex-wrap gap-2.5">
           {product.colours.map((option) => (
             <button
               key={option.name}
               type="button"
-              onClick={() => setColour(option.name)}
-              aria-pressed={colour === option.name}
+              onClick={() => toggleColour(option.name)}
+              aria-pressed={colours.includes(option.name)}
               className={cn(
                 "flex min-h-11 items-center gap-2.5 rounded-sm border px-3.5 text-xs font-medium tracking-wide uppercase transition-colors",
-                colour === option.name
+                colours.includes(option.name)
                   ? "border-ink bg-ink text-bone"
                   : "border-border hover:border-ink",
               )}
@@ -54,6 +135,11 @@ export function ProductDetails({ product }: { product: Product }) {
             </button>
           ))}
         </div>
+        {multi ? (
+          <p className="mt-2 text-xs text-muted-foreground">
+            Repeat colours or swap any of them — just tell us in the WhatsApp message.
+          </p>
+        ) : null}
       </fieldset>
 
       <fieldset>
@@ -86,36 +172,58 @@ export function ProductDetails({ product }: { product: Product }) {
         </div>
       </fieldset>
 
-      <div className="flex flex-wrap items-center gap-4">
-        <div className="flex items-center rounded-sm border border-border">
-          <button
-            type="button"
-            onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-            className="grid size-11 place-items-center text-muted-foreground hover:text-foreground"
-            aria-label="Decrease quantity"
-          >
-            <Minus className="size-4" />
-          </button>
-          <span
-            className="min-w-10 text-center font-display text-sm font-bold"
-            aria-live="polite"
-            aria-label={`Quantity ${quantity}`}
-          >
-            {quantity}
-          </span>
-          <button
-            type="button"
-            onClick={() => setQuantity((q) => Math.min(99, q + 1))}
-            className="grid size-11 place-items-center text-muted-foreground hover:text-foreground"
-            aria-label="Increase quantity"
-          >
-            <Plus className="size-4" />
-          </button>
+      <fieldset>
+        <legend className="eyebrow text-muted-foreground">Payment</legend>
+        <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
+          {paymentMethods.map((method) => (
+            <button
+              key={method.id}
+              type="button"
+              onClick={() => setPayment(method.id)}
+              aria-pressed={payment === method.id}
+              className={cn(
+                "rounded-sm border p-4 text-left transition-colors",
+                payment === method.id ? "border-ink bg-ink text-bone" : "border-border hover:border-ink",
+              )}
+            >
+              <span className="block font-display text-sm font-bold tracking-wide uppercase">
+                {method.label}
+              </span>
+              <span
+                className={cn(
+                  "mt-1 block text-xs",
+                  payment === method.id ? "text-bone/65" : "text-muted-foreground",
+                )}
+              >
+                {method.note}
+              </span>
+            </button>
+          ))}
         </div>
-        <WhatsAppButton order={order} size="lg" className="min-w-0 flex-1">
-          Order on WhatsApp
-        </WhatsAppButton>
-      </div>
+      </fieldset>
+
+      <dl className="grid gap-2 border-y border-border py-5 text-sm">
+        <div className="flex justify-between gap-4">
+          <dt className="text-muted-foreground">
+            {pack.label} ({pack.quantity} × track pant)
+          </dt>
+          <dd>{formatPrice(pack.price)}</dd>
+        </div>
+        {payment === "cod" ? (
+          <div className="flex justify-between gap-4">
+            <dt className="text-muted-foreground">Cash on delivery charge</dt>
+            <dd>{formatPrice(COD_FEE)}</dd>
+          </div>
+        ) : null}
+        <div className="flex justify-between gap-4 font-display text-base font-extrabold">
+          <dt>Total</dt>
+          <dd>{formatPrice(total)}</dd>
+        </div>
+      </dl>
+
+      <WhatsAppButton order={order} size="lg" className="w-full">
+        Order on WhatsApp
+      </WhatsAppButton>
 
       <p className="flex items-start gap-2.5 border-t border-border pt-6 text-sm text-muted-foreground">
         <Truck className="mt-0.5 size-4 shrink-0" />
@@ -150,8 +258,8 @@ export function ProductDetails({ product }: { product: Product }) {
 
       <StickyMobileCta
         order={order}
-        price={formatPrice(product.price)}
-        meta={`${colour} · Size ${size}`}
+        price={formatPrice(total)}
+        meta={`${pack.label} · Size ${size} · ${paymentLabel}`}
       />
     </div>
   );

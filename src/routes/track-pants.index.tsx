@@ -3,11 +3,12 @@ import { ProductCard } from "@/components/ProductCard";
 import { Reveal } from "@/components/Reveal";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { Faq } from "@/components/sections/Faq";
+import { PricingOptions } from "@/components/sections/PricingOptions";
 import { products } from "@/data/products";
 
 const title = "Men's 4-Way Ultra-Stretch Lycra Track Pants — Honey Badger Outfits";
 const description =
-  "Shop 4-way ultra-stretch lycra track pants for men in Black, Navy, Olive, Charcoal and Sky Blue. Sizes M to XXL, zipped side pocket.";
+  "Men's 4-way ultra-stretch lycra track pants — ₹350 each, 3 pc combo ₹999, 5 pc combo ₹1,499. Five colours, sizes M to XXL, prepaid or COD.";
 
 export const Route = createFileRoute("/track-pants/")({
   head: () => ({
@@ -34,7 +35,7 @@ function TrackPants() {
             Track Pants<span className="text-accent">.</span>
           </h1>
           <p className="mt-5 max-w-md leading-relaxed text-bone/65">
-            One construction, five colours, built around 4-way ultra-stretch lycra. Choose your colour and order in a message.
+            One construction, five colours, built around 4-way ultra-stretch lycra. ₹350 for one, ₹999 for a 3 pc combo, ₹1,499 for a 5 pc combo.
           </p>
         </div>
       </header>
@@ -49,6 +50,7 @@ function TrackPants() {
         </div>
       </section>
 
+      <PricingOptions />
       <FeatureGrid />
       <Faq />
     </>

@@ -46,6 +46,40 @@ export const colourways = [
   { name: "Sky Blue", hex: "#8FB4D9" },
 ];
 
+/** Cash on delivery handling charge, added on top of the pack price. */
+export const COD_FEE = 30;
+
+export type Pack = {
+  id: string;
+  label: string;
+  quantity: number;
+  price: number;
+  note: string;
+};
+
+/** Buying options for the track pant: single piece or multi-piece combos. */
+export const packs: Pack[] = [
+  { id: "single", label: "1 Piece", quantity: 1, price: 350, note: "One track pant, one colour" },
+  { id: "combo-3", label: "3 PCS Combo", quantity: 3, price: 999, note: "Mix any 3 colours" },
+  { id: "combo-5", label: "5 PCS Combo", quantity: 5, price: 1499, note: "All five colours" },
+];
+
+export function packSaving(pack: Pack) {
+  return packs[0]!.price * pack.quantity - pack.price;
+}
+
+export type PaymentMethod = "prepaid" | "cod";
+
+export const paymentMethods: { id: PaymentMethod; label: string; note: string }[] = [
+  { id: "prepaid", label: "Prepaid", note: "UPI or bank transfer — no extra charge" },
+  { id: "cod", label: "Cash on delivery", note: `+₹${COD_FEE} COD handling charge` },
+];
+
+export function orderTotal(pack: Pack, payment: PaymentMethod) {
+  return pack.price + (payment === "cod" ? COD_FEE : 0);
+}
+
+
 /**
  * Product catalogue. Add another track pant by appending one object —
  * every page, card and WhatsApp message reads from here.

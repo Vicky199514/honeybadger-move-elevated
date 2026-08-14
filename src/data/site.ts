@@ -9,7 +9,7 @@ export const WHATSAPP_NUMBER = "919999999999"; // PLACEHOLDER — replace with y
 export const site = {
   name: "Honey Badger Outfits",
   shortName: "Honey Badger",
-  tagline: "Premium stretch track pants built for movement.",
+  tagline: "Men's wear built for movement.",
   /** PLACEHOLDER — replace with your live domain once published. */
   url: "",
   email: "hello@honeybadgeroutfits.com", // PLACEHOLDER

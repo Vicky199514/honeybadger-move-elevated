@@ -4,18 +4,20 @@ import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { FeaturedProduct } from "@/components/sections/FeaturedProduct";
 import { GalleryStrip } from "@/components/sections/GalleryStrip";
 import { Colourways } from "@/components/sections/Colourways";
+import { Categories } from "@/components/sections/Categories";
+import { PricingOptions } from "@/components/sections/PricingOptions";
 
 import { BrandSection } from "@/components/sections/BrandSection";
 import { VideoSection } from "@/components/sections/VideoSection";
 import { SizeGuide } from "@/components/sections/SizeGuide";
 import { Faq } from "@/components/sections/Faq";
 import { StickyMobileCta } from "@/components/StickyMobileCta";
-import { formatPrice, heroProduct } from "@/data/products";
+import { formatPrice, heroProduct, packs } from "@/data/products";
 import { faqs } from "@/data/faq";
 
-const title = "Honey Badger Outfits — 4-Way Ultra-Stretch Lycra Track Pants for Men";
+const title = "Honey Badger Outfits — Men's Wear | Ultra-Stretch Track Pants";
 const description =
-  "Men's 4-way ultra-stretch lycra track pants in five colours — high elasticity, breathable, quick-dry, with a secure zipped side pocket. Order on WhatsApp.";
+  "Honey Badger Outfits is a men's wear label. First up: 4-way ultra-stretch lycra track pants from ₹350, with 3 pc and 5 pc combos. Order on WhatsApp.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,7 +53,9 @@ function Home() {
     <>
       <Hero />
       <FeatureGrid />
+      <Categories />
       <FeaturedProduct />
+      <PricingOptions />
       <Colourways />
       <GalleryStrip />
       <VideoSection />
@@ -59,8 +63,8 @@ function Home() {
       <SizeGuide compact />
       <Faq />
       <StickyMobileCta
-        order={{ product: heroProduct.name, colour: heroProduct.colours[0]!.name, size: "L", quantity: 1 }}
-        price={formatPrice(heroProduct.price)}
+        order={{ product: heroProduct.name, pack: packs[0]!.label, colour: heroProduct.colours[0]!.name, size: "L", quantity: 1 }}
+        price={formatPrice(packs[0]!.price)}
         meta="4-Way Ultra-Stretch Lycra Track Pant"
       />
 
