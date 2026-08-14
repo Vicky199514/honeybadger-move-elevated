@@ -1,6 +1,6 @@
 import { ActionLink } from "@/components/ActionLink";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { heroProduct, formatPrice, productPhotos } from "@/data/products";
+import { heroProduct, formatPrice, packs, productPhotos } from "@/data/products";
 
 export function Hero() {
   return (
@@ -25,7 +25,7 @@ export function Hero() {
       <div className="shell flex min-h-[92svh] flex-col justify-end pt-32 pb-14 md:min-h-[94svh] md:justify-center md:pt-28 md:pb-24">
         <div className="max-w-xl">
           <p className="eyebrow animate-in fade-in slide-in-from-bottom-2 text-accent duration-700">
-            Honey Badger Outfits · Men's Sportswear
+            Honey Badger Outfits · Men's Wear
           </p>
           <h1
             id="hero-title"
@@ -36,8 +36,9 @@ export function Hero() {
             Different<span className="text-accent">.</span>
           </h1>
           <p className="animate-in fade-in mt-6 max-w-md text-base leading-relaxed text-bone/75 duration-1000 sm:text-lg">
-            4-way ultra-stretch lycra track pants. High elasticity, breathable, quick-dry — with a
-            secure zipped side pocket. Five essential colours.
+            A men's wear label built for movement. First release: 4-way ultra-stretch lycra track
+            pants — high elasticity, breathable, quick-dry, secure zipped side pocket. From ₹350,
+            with 3 pc and 5 pc combos.
           </p>
 
           <div className="animate-in fade-in mt-9 flex flex-col gap-3 duration-1000 sm:flex-row">
@@ -71,7 +72,7 @@ export function Hero() {
             <div>
               <dt className="text-bone/50 uppercase tracking-[0.18em]">From</dt>
               <dd className="mt-1 font-display font-bold tracking-wide text-bone">
-                {formatPrice(heroProduct.price)}
+                {formatPrice(packs[0]!.price)}
               </dd>
             </div>
           </dl>

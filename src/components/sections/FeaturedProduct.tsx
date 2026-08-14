@@ -2,7 +2,7 @@ import { Check } from "lucide-react";
 import { ActionLink } from "@/components/ActionLink";
 import { Reveal } from "@/components/Reveal";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { formatPrice, heroProduct } from "@/data/products";
+import { formatPrice, heroProduct, packs } from "@/data/products";
 
 export function FeaturedProduct() {
   const product = heroProduct;
@@ -57,9 +57,12 @@ export function FeaturedProduct() {
           </p>
 
           <p className="mt-7 font-display text-2xl font-extrabold">
-            {formatPrice(product.price)}
+            {formatPrice(packs[0]!.price)}
             <span className="ml-2 align-middle font-body text-xs font-normal tracking-wide text-muted-foreground uppercase">
-              Price placeholder
+              per piece · {packs
+                .slice(1)
+                .map((pack) => `${pack.quantity} pcs ${formatPrice(pack.price)}`)
+                .join(" · ")}
             </span>
           </p>
 
