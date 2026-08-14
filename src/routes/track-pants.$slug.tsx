@@ -2,7 +2,7 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { ProductDetails } from "@/components/ProductDetails";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductCard } from "@/components/ProductCard";
-import { getProductBySlug, products } from "@/data/products";
+import { getProductBySlug, packs, products } from "@/data/products";
 
 export const Route = createFileRoute("/track-pants/$slug")({
   loader: ({ params }) => {
@@ -39,14 +39,16 @@ export const Route = createFileRoute("/track-pants/$slug")({
             description: product.description,
             brand: { "@type": "Brand", name: "Honey Badger Outfits" },
             material: "4-way ultra-stretch lycra",
-            offers: {
+            offers: packs.map((pack) => ({
               "@type": "Offer",
+              name: pack.label,
               priceCurrency: "INR",
-              price: String(product.price),
+              price: String(pack.price),
+              eligibleQuantity: { "@type": "QuantitativeValue", value: pack.quantity },
               availability: product.available
                 ? "https://schema.org/InStock"
                 : "https://schema.org/OutOfStock",
-            },
+            })),
           }),
         },
       ],

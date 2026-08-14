@@ -35,9 +35,24 @@ export const faqs: FaqItem[] = [
       "Measure your natural waist and compare it with the size guide. The waistband is elasticated with an adjustable drawstring, and the 4-way stretch covers a range around each size — if you fall between two sizes, size up for a more relaxed fit.",
   },
   {
+    question: "How much does a track pant cost?",
+    answer:
+      "₹350 for a single track pant, ₹999 for a 3 pcs combo and ₹1,499 for a 5 pcs combo — so the combos work out cheaper per pair.",
+  },
+  {
+    question: "Do you offer cash on delivery?",
+    answer:
+      "Yes. Cash on delivery adds a ₹30 handling charge on top of the price — prepaid orders have no extra charge. Pick your payment method on the product page and it is included in the WhatsApp message.",
+  },
+  {
+    question: "Is Honey Badger only track pants?",
+    answer:
+      "No — Honey Badger Outfits is a men's wear label. The 4-way ultra-stretch track pant is the product available right now, with more categories in development.",
+  },
+  {
     question: "How do I place an order?",
     answer:
-      "Choose your colour and size, then tap Order on WhatsApp. Your product, colour, size and quantity are filled in automatically — send the message and we confirm the rest with you directly.",
+      "Choose your option (1 pc, 3 pcs or 5 pcs), colour, size and payment method, then tap Order on WhatsApp. Everything including your total is filled in automatically — send the message and we confirm the rest with you directly.",
   },
   {
     question: "Do you offer returns or exchanges?",
