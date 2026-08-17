@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { nav } from "@/data/site";
 import { cn } from "@/lib/utils";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { CartLink } from "@/components/CartLink";
 import { LogoMark } from "@/components/Logo";
 
 
@@ -63,9 +63,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <WhatsAppButton className="hidden sm:inline-flex" size="md">
-            Order
-          </WhatsAppButton>
+          <CartLink />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -94,7 +92,12 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <WhatsAppButton className="my-4" size="lg" />
+          <Link
+            to="/cart"
+            className="my-4 inline-flex min-h-13 items-center justify-center rounded-sm bg-accent px-7 font-display text-sm font-bold tracking-[0.16em] text-accent-foreground uppercase"
+          >
+            View cart
+          </Link>
         </nav>
       </div>
     </header>

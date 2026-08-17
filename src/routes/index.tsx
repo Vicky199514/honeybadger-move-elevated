@@ -11,7 +11,7 @@ import { BrandSection } from "@/components/sections/BrandSection";
 import { VideoSection } from "@/components/sections/VideoSection";
 import { SizeGuide } from "@/components/sections/SizeGuide";
 import { Faq } from "@/components/sections/Faq";
-import { StickyMobileCta } from "@/components/StickyMobileCta";
+import { ShopBar } from "@/components/ShopBar";
 import { formatPrice, heroProduct, packs } from "@/data/products";
 import { faqs } from "@/data/faq";
 
@@ -62,11 +62,8 @@ function Home() {
       <BrandSection />
       <SizeGuide compact />
       <Faq />
-      <StickyMobileCta
-        order={{ product: heroProduct.name, pack: packs[0]!.label, colour: heroProduct.colours[0]!.name, size: "L", quantity: 1 }}
-        price={formatPrice(packs[0]!.price)}
-        meta="4-Way Ultra-Stretch Lycra Track Pant"
-      />
+      <ShopBar price={formatPrice(packs[0]!.price)} meta={heroProduct.name} />
+
 
     </>
   );

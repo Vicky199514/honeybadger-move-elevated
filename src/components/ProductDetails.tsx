@@ -1,10 +1,10 @@
-import { Link } from "@tanstack/react-router";
-import { Check, Ruler, Truck } from "lucide-react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { Check, Minus, Plus, Ruler, ShoppingBag, Truck } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 import {
   COD_FEE,
   formatPrice,
-  orderTotal,
   packSaving,
   packs,
   paymentMethods,
@@ -12,18 +12,22 @@ import {
   type Product,
 } from "@/data/products";
 import { cn } from "@/lib/utils";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { useCart } from "@/lib/cart";
 import { StickyMobileCta } from "@/components/StickyMobileCta";
 
 export function ProductDetails({ product }: { product: Product }) {
+  const navigate = useNavigate();
+  const cart = useCart();
   const [packId, setPackId] = useState(packs[0]!.id);
   const [colours, setColours] = useState<string[]>([product.colours[0]!.name]);
   const [size, setSize] = useState(product.sizes[1] ?? product.sizes[0]!);
   const [payment, setPayment] = useState<PaymentMethod>("prepaid");
+  const [quantity, setQuantity] = useState(1);
 
   const pack = packs.find((option) => option.id === packId) ?? packs[0]!;
   const multi = pack.quantity > 1;
-  const total = orderTotal(pack, payment);
+  const lineTotal = pack.price * quantity;
+  const total = lineTotal + (payment === "cod" ? COD_FEE : 0);
   const paymentLabel = paymentMethods.find((method) => method.id === payment)!.label;
 
   const toggleColour = (name: string) => {
@@ -46,15 +50,43 @@ export function ProductDetails({ product }: { product: Product }) {
     setColours((current) => (next.quantity === 1 ? current.slice(0, 1) : current.slice(0, next.quantity)));
   };
 
-  const order = {
-    product: product.name,
-    pack: pack.label,
-    colour: colours.join(", "),
-    size,
-    quantity: pack.quantity,
-    payment: payment === "cod" ? `Cash on delivery (+${formatPrice(COD_FEE)})` : paymentLabel,
-    total: formatPrice(total),
+  const addToCart = () => {
+    if (!colours.length) {
+      toast.error("Pick a colour first.");
+      return false;
+    }
+    cart.setPayment(payment);
+    cart.add({
+      productSlug: product.slug,
+      productName: product.name,
+      packId: pack.id,
+      packLabel: pack.label,
+      colours,
+      size,
+      unitPrice: pack.price,
+      piecesPerPack: pack.quantity,
+      quantity,
+    });
+    return true;
   };
+
+  const onAddToCart = () => {
+    if (addToCart()) toast.success(`${pack.label} · Size ${size} added to cart`);
+  };
+
+  const onBuyNow = () => {
+    if (addToCart()) void navigate({ to: "/cart" });
+  };
+
+  const optionsPanel = (
+    <div className="space-y-5">
+      <PackPicker packId={packId} onSelect={selectPack} compact />
+      <ColourPicker product={product} colours={colours} multi={multi} onToggle={toggleColour} />
+      <SizePicker product={product} size={size} onSelect={setSize} />
+      <QuantityPicker quantity={quantity} onChange={setQuantity} />
+      <PaymentPicker payment={payment} onSelect={setPayment} compact />
+    </div>
+  );
 
   return (
     <div className="space-y-8">
@@ -65,6 +97,7 @@ export function ProductDetails({ product }: { product: Product }) {
           {formatPrice(total)}
           <span className="ml-2 align-middle font-body text-xs font-normal tracking-wide text-muted-foreground uppercase">
             {pack.label}
+            {quantity > 1 ? ` × ${quantity}` : ""}
             {payment === "cod" ? ` · incl. ${formatPrice(COD_FEE)} COD` : ""}
           </span>
         </p>
@@ -73,73 +106,13 @@ export function ProductDetails({ product }: { product: Product }) {
 
       <fieldset>
         <legend className="eyebrow text-muted-foreground">Choose your option</legend>
-        <div className="mt-3 grid gap-2.5 sm:grid-cols-3">
-          {packs.map((option) => {
-            const saving = packSaving(option);
-            return (
-              <button
-                key={option.id}
-                type="button"
-                onClick={() => selectPack(option.id)}
-                aria-pressed={packId === option.id}
-                className={cn(
-                  "rounded-sm border p-4 text-left transition-colors",
-                  packId === option.id ? "border-ink bg-ink text-bone" : "border-border hover:border-ink",
-                )}
-              >
-                <span className="block font-display text-sm font-bold tracking-wide uppercase">
-                  {option.label}
-                </span>
-                <span className="mt-2 block font-display text-lg font-extrabold">
-                  {formatPrice(option.price)}
-                </span>
-                <span
-                  className={cn(
-                    "mt-1 block text-xs",
-                    packId === option.id ? "text-bone/65" : "text-muted-foreground",
-                  )}
-                >
-                  {saving > 0 ? `Save ${formatPrice(saving)} · ${option.note}` : option.note}
-                </span>
-              </button>
-            );
-          })}
+        <div className="mt-3">
+          <PackPicker packId={packId} onSelect={selectPack} />
         </div>
       </fieldset>
 
       <fieldset>
-        <legend className="eyebrow text-muted-foreground">
-          {multi ? `Colours — pick ${pack.quantity} · ` : "Colour — "}
-          <span className="text-foreground">{colours.join(", ") || "select"}</span>
-        </legend>
-        <div className="mt-3 flex flex-wrap gap-2.5">
-          {product.colours.map((option) => (
-            <button
-              key={option.name}
-              type="button"
-              onClick={() => toggleColour(option.name)}
-              aria-pressed={colours.includes(option.name)}
-              className={cn(
-                "flex min-h-11 items-center gap-2.5 rounded-sm border px-3.5 text-xs font-medium tracking-wide uppercase transition-colors",
-                colours.includes(option.name)
-                  ? "border-ink bg-ink text-bone"
-                  : "border-border hover:border-ink",
-              )}
-            >
-              <span
-                className="size-4 rounded-full border border-black/20"
-                style={{ backgroundColor: option.hex }}
-                aria-hidden="true"
-              />
-              {option.name}
-            </button>
-          ))}
-        </div>
-        {multi ? (
-          <p className="mt-2 text-xs text-muted-foreground">
-            Repeat colours or swap any of them — just tell us in the WhatsApp message.
-          </p>
-        ) : null}
+        <ColourPicker product={product} colours={colours} multi={multi} onToggle={toggleColour} />
       </fieldset>
 
       <fieldset>
@@ -173,41 +146,22 @@ export function ProductDetails({ product }: { product: Product }) {
       </fieldset>
 
       <fieldset>
+        <QuantityPicker quantity={quantity} onChange={setQuantity} />
+      </fieldset>
+
+      <fieldset>
         <legend className="eyebrow text-muted-foreground">Payment</legend>
-        <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
-          {paymentMethods.map((method) => (
-            <button
-              key={method.id}
-              type="button"
-              onClick={() => setPayment(method.id)}
-              aria-pressed={payment === method.id}
-              className={cn(
-                "rounded-sm border p-4 text-left transition-colors",
-                payment === method.id ? "border-ink bg-ink text-bone" : "border-border hover:border-ink",
-              )}
-            >
-              <span className="block font-display text-sm font-bold tracking-wide uppercase">
-                {method.label}
-              </span>
-              <span
-                className={cn(
-                  "mt-1 block text-xs",
-                  payment === method.id ? "text-bone/65" : "text-muted-foreground",
-                )}
-              >
-                {method.note}
-              </span>
-            </button>
-          ))}
+        <div className="mt-3">
+          <PaymentPicker payment={payment} onSelect={setPayment} />
         </div>
       </fieldset>
 
       <dl className="grid gap-2 border-y border-border py-5 text-sm">
         <div className="flex justify-between gap-4">
           <dt className="text-muted-foreground">
-            {pack.label} ({pack.quantity} × track pant)
+            {pack.label} ({pack.quantity} × track pant){quantity > 1 ? ` × ${quantity}` : ""}
           </dt>
-          <dd>{formatPrice(pack.price)}</dd>
+          <dd>{formatPrice(lineTotal)}</dd>
         </div>
         {payment === "cod" ? (
           <div className="flex justify-between gap-4">
@@ -221,9 +175,22 @@ export function ProductDetails({ product }: { product: Product }) {
         </div>
       </dl>
 
-      <WhatsAppButton order={order} size="lg" className="w-full">
-        Order on WhatsApp
-      </WhatsAppButton>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <button
+          type="button"
+          onClick={onAddToCart}
+          className="inline-flex min-h-13 items-center justify-center gap-2.5 rounded-sm border border-ink px-7 font-display text-sm font-bold tracking-[0.16em] uppercase transition-colors hover:bg-ink hover:text-bone"
+        >
+          <ShoppingBag className="size-4" /> Add to cart
+        </button>
+        <button
+          type="button"
+          onClick={onBuyNow}
+          className="inline-flex min-h-13 items-center justify-center rounded-sm bg-accent px-7 font-display text-sm font-bold tracking-[0.16em] text-accent-foreground uppercase transition-colors hover:bg-accent/90"
+        >
+          Buy now
+        </button>
+      </div>
 
       <p className="flex items-start gap-2.5 border-t border-border pt-6 text-sm text-muted-foreground">
         <Truck className="mt-0.5 size-4 shrink-0" />
@@ -257,10 +224,214 @@ export function ProductDetails({ product }: { product: Product }) {
       </div>
 
       <StickyMobileCta
-        order={order}
         price={formatPrice(total)}
-        meta={`${pack.label} · Size ${size} · ${paymentLabel}`}
-      />
+        meta={`${pack.label}${quantity > 1 ? ` × ${quantity}` : ""} · Size ${size} · ${paymentLabel}`}
+        onAddToCart={onAddToCart}
+        onBuyNow={onBuyNow}
+      >
+        {optionsPanel}
+      </StickyMobileCta>
+    </div>
+  );
+}
+
+function PackPicker({
+  packId,
+  onSelect,
+  compact,
+}: {
+  packId: string;
+  onSelect: (id: string) => void;
+  compact?: boolean;
+}) {
+  return (
+    <div className={cn("grid gap-2.5", compact ? "grid-cols-3" : "sm:grid-cols-3")}>
+      {packs.map((option) => {
+        const saving = packSaving(option);
+        const selected = packId === option.id;
+        return (
+          <button
+            key={option.id}
+            type="button"
+            onClick={() => onSelect(option.id)}
+            aria-pressed={selected}
+            className={cn(
+              "rounded-sm border text-left transition-colors",
+              compact ? "p-3" : "p-4",
+              selected ? "border-ink bg-ink text-bone" : "border-border hover:border-ink",
+            )}
+          >
+            <span className="block font-display text-xs font-bold tracking-wide uppercase sm:text-sm">
+              {option.label}
+            </span>
+            <span className={cn("mt-1.5 block font-display font-extrabold", compact ? "text-base" : "text-lg")}>
+              {formatPrice(option.price)}
+            </span>
+            <span
+              className={cn(
+                "mt-1 block text-[11px] sm:text-xs",
+                selected ? "text-bone/65" : "text-muted-foreground",
+              )}
+            >
+              {saving > 0 ? `Save ${formatPrice(saving)}` : option.note}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function ColourPicker({
+  product,
+  colours,
+  multi,
+  onToggle,
+}: {
+  product: Product;
+  colours: string[];
+  multi: boolean;
+  onToggle: (name: string) => void;
+}) {
+  return (
+    <div>
+      <p className="eyebrow text-muted-foreground">
+        {multi ? `Colours — pick ${colours.length}/` : "Colour — "}
+        <span className="text-foreground">{colours.join(", ") || "select"}</span>
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2.5">
+        {product.colours.map((option) => (
+          <button
+            key={option.name}
+            type="button"
+            onClick={() => onToggle(option.name)}
+            aria-pressed={colours.includes(option.name)}
+            className={cn(
+              "flex min-h-11 items-center gap-2.5 rounded-sm border px-3.5 text-xs font-medium tracking-wide uppercase transition-colors",
+              colours.includes(option.name)
+                ? "border-ink bg-ink text-bone"
+                : "border-border hover:border-ink",
+            )}
+          >
+            <span
+              className="size-4 rounded-full border border-black/20"
+              style={{ backgroundColor: option.hex }}
+              aria-hidden="true"
+            />
+            {option.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SizePicker({
+  product,
+  size,
+  onSelect,
+}: {
+  product: Product;
+  size: string;
+  onSelect: (size: string) => void;
+}) {
+  return (
+    <div>
+      <p className="eyebrow text-muted-foreground">
+        Size — <span className="text-foreground">{size}</span>
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2.5">
+        {product.sizes.map((option) => (
+          <button
+            key={option}
+            type="button"
+            onClick={() => onSelect(option)}
+            aria-pressed={size === option}
+            className={cn(
+              "min-h-11 min-w-13 rounded-sm border px-3 font-display text-sm font-bold transition-colors",
+              size === option ? "border-ink bg-ink text-bone" : "border-border hover:border-ink",
+            )}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function QuantityPicker({
+  quantity,
+  onChange,
+}: {
+  quantity: number;
+  onChange: (value: number) => void;
+}) {
+  return (
+    <div>
+      <p className="eyebrow text-muted-foreground">Quantity</p>
+      <div className="mt-3 inline-flex items-center rounded-sm border border-border">
+        <button
+          type="button"
+          onClick={() => onChange(Math.max(1, quantity - 1))}
+          aria-label="Decrease quantity"
+          disabled={quantity <= 1}
+          className="grid size-11 place-items-center transition-colors hover:bg-secondary disabled:opacity-40"
+        >
+          <Minus className="size-4" />
+        </button>
+        <span aria-live="polite" className="min-w-11 text-center font-display text-base font-extrabold">
+          {quantity}
+        </span>
+        <button
+          type="button"
+          onClick={() => onChange(Math.min(99, quantity + 1))}
+          aria-label="Increase quantity"
+          className="grid size-11 place-items-center transition-colors hover:bg-secondary"
+        >
+          <Plus className="size-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function PaymentPicker({
+  payment,
+  onSelect,
+  compact,
+}: {
+  payment: PaymentMethod;
+  onSelect: (method: PaymentMethod) => void;
+  compact?: boolean;
+}) {
+  return (
+    <div className="grid gap-2.5 sm:grid-cols-2">
+      {paymentMethods.map((method) => (
+        <button
+          key={method.id}
+          type="button"
+          onClick={() => onSelect(method.id)}
+          aria-pressed={payment === method.id}
+          className={cn(
+            "rounded-sm border text-left transition-colors",
+            compact ? "p-3" : "p-4",
+            payment === method.id ? "border-ink bg-ink text-bone" : "border-border hover:border-ink",
+          )}
+        >
+          <span className="block font-display text-sm font-bold tracking-wide uppercase">
+            {method.label}
+          </span>
+          <span
+            className={cn(
+              "mt-1 block text-xs",
+              payment === method.id ? "text-bone/65" : "text-muted-foreground",
+            )}
+          >
+            {method.note}
+          </span>
+        </button>
+      ))}
     </div>
   );
 }
