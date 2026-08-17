@@ -1,7 +1,6 @@
 import { Check } from "lucide-react";
 import { ActionLink } from "@/components/ActionLink";
 import { Reveal } from "@/components/Reveal";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { formatPrice, heroProduct, packs } from "@/data/products";
 
 export function FeaturedProduct() {
@@ -106,12 +105,9 @@ export function FeaturedProduct() {
             >
               View Product
             </ActionLink>
-            <WhatsAppButton
-              order={{ product: product.name, colour: product.colours[0]!.name, size: "M", quantity: 1 }}
-              size="lg"
-            >
-              Order on WhatsApp
-            </WhatsAppButton>
+            <ActionLink to="/cart" variant="outlineInk" size="lg">
+              View Cart
+            </ActionLink>
           </div>
         </Reveal>
       </div>

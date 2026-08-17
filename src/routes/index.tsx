@@ -11,7 +11,7 @@ import { BrandSection } from "@/components/sections/BrandSection";
 import { VideoSection } from "@/components/sections/VideoSection";
 import { SizeGuide } from "@/components/sections/SizeGuide";
 import { Faq } from "@/components/sections/Faq";
-import { StickyMobileCta } from "@/components/StickyMobileCta";
+import { ShopBar } from "@/components/ShopBar";
 import { formatPrice, heroProduct, packs } from "@/data/products";
 import { faqs } from "@/data/faq";
 

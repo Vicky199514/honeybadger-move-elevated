@@ -22,6 +22,7 @@ export const site = {
 export const nav = [
   { label: "Home", to: "/" },
   { label: "Track Pants", to: "/track-pants" },
+  { label: "T-Shirts", to: "/t-shirts" },
   { label: "About", to: "/about" },
   { label: "Size Guide", to: "/size-guide" },
   { label: "Contact", to: "/contact" },

@@ -1,5 +1,4 @@
 import { ActionLink } from "@/components/ActionLink";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { heroProduct, formatPrice, packs, productPhotos } from "@/data/products";
 
 export function Hero() {
@@ -45,9 +44,9 @@ export function Hero() {
             <ActionLink to="/track-pants" variant="solidBone" size="lg">
               Shop Track Pants
             </ActionLink>
-            <WhatsAppButton variant="outline" size="lg">
-              Order on WhatsApp
-            </WhatsAppButton>
+            <ActionLink to="/size-guide" variant="outline" size="lg">
+              Size Guide
+            </ActionLink>
           </div>
 
           <dl className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-hairline-ink pt-6 text-xs">
