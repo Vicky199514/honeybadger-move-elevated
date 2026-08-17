@@ -17,6 +17,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ShippingReturnsRouteImport } from './routes/shipping-returns'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SizeGuideRouteImport } from './routes/size-guide'
+import { Route as TShirtsRouteImport } from './routes/t-shirts'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TrackPantsIndexRouteImport } from './routes/track-pants.index'
 import { Route as TrackPantsSlugRouteImport } from './routes/track-pants.$slug'
@@ -61,6 +62,11 @@ const SizeGuideRoute = SizeGuideRouteImport.update({
   path: '/size-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TShirtsRoute = TShirtsRouteImport.update({
+  id: '/t-shirts',
+  path: '/t-shirts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/shipping-returns': typeof ShippingReturnsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/size-guide': typeof SizeGuideRoute
+  '/t-shirts': typeof TShirtsRoute
   '/terms': typeof TermsRoute
   '/track-pants/$slug': typeof TrackPantsSlugRoute
   '/track-pants/': typeof TrackPantsIndexRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/shipping-returns': typeof ShippingReturnsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/size-guide': typeof SizeGuideRoute
+  '/t-shirts': typeof TShirtsRoute
   '/terms': typeof TermsRoute
   '/track-pants/$slug': typeof TrackPantsSlugRoute
   '/track-pants': typeof TrackPantsIndexRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/shipping-returns': typeof ShippingReturnsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/size-guide': typeof SizeGuideRoute
+  '/t-shirts': typeof TShirtsRoute
   '/terms': typeof TermsRoute
   '/track-pants/$slug': typeof TrackPantsSlugRoute
   '/track-pants/': typeof TrackPantsIndexRoute
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/shipping-returns'
     | '/sitemap.xml'
     | '/size-guide'
+    | '/t-shirts'
     | '/terms'
     | '/track-pants/$slug'
     | '/track-pants/'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/shipping-returns'
     | '/sitemap.xml'
     | '/size-guide'
+    | '/t-shirts'
     | '/terms'
     | '/track-pants/$slug'
     | '/track-pants'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/shipping-returns'
     | '/sitemap.xml'
     | '/size-guide'
+    | '/t-shirts'
     | '/terms'
     | '/track-pants/$slug'
     | '/track-pants/'
@@ -168,6 +180,7 @@ export interface RootRouteChildren {
   ShippingReturnsRoute: typeof ShippingReturnsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SizeGuideRoute: typeof SizeGuideRoute
+  TShirtsRoute: typeof TShirtsRoute
   TermsRoute: typeof TermsRoute
   TrackPantsSlugRoute: typeof TrackPantsSlugRoute
   TrackPantsIndexRoute: typeof TrackPantsIndexRoute
@@ -231,6 +244,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SizeGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/t-shirts': {
+      id: '/t-shirts'
+      path: '/t-shirts'
+      fullPath: '/t-shirts'
+      preLoaderRoute: typeof TShirtsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -264,6 +284,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShippingReturnsRoute: ShippingReturnsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SizeGuideRoute: SizeGuideRoute,
+  TShirtsRoute: TShirtsRoute,
   TermsRoute: TermsRoute,
   TrackPantsSlugRoute: TrackPantsSlugRoute,
   TrackPantsIndexRoute: TrackPantsIndexRoute,

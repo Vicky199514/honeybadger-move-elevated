@@ -62,11 +62,8 @@ function Home() {
       <BrandSection />
       <SizeGuide compact />
       <Faq />
-      <StickyMobileCta
-        order={{ product: heroProduct.name, pack: packs[0]!.label, colour: heroProduct.colours[0]!.name, size: "L", quantity: 1 }}
-        price={formatPrice(packs[0]!.price)}
-        meta="4-Way Ultra-Stretch Lycra Track Pant"
-      />
+      <ShopBar price={formatPrice(packs[0]!.price)} meta={heroProduct.name} />
+
 
     </>
   );
