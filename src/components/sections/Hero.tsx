@@ -44,7 +44,7 @@ export function Hero() {
             <ActionLink to="/track-pants" variant="solidBone" size="lg">
               Shop Track Pants
             </ActionLink>
-            <ActionLink to="/size-guide" variant="outline" size="lg">
+            <ActionLink to="/size-guide" variant="outlineBone" size="lg">
               Size Guide
             </ActionLink>
           </div>

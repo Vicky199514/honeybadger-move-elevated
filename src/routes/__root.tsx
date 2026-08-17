@@ -13,6 +13,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Toaster } from "@/components/ui/sonner";
+import { CartProvider } from "@/lib/cart";
 
 function NotFoundComponent() {
   return (
@@ -138,6 +140,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <CartProvider>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:bg-accent focus:px-4 focus:py-2 focus:font-display focus:text-xs focus:tracking-widest focus:text-ink focus:uppercase"
@@ -150,6 +153,8 @@ function RootComponent() {
         <Outlet />
       </main>
       <Footer />
+      <Toaster />
+      </CartProvider>
     </QueryClientProvider>
   );
 }
