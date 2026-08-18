@@ -444,12 +444,12 @@ function Field({
   label: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  error?: string;
-  hint?: string;
-  type?: string;
-  textarea?: boolean;
-  inputMode?: "numeric" | "text" | "tel";
-  autoComplete?: string;
+  error?: string | undefined;
+  hint?: string | undefined;
+  type?: string | undefined;
+  inputMode?: "numeric" | "text" | "tel" | undefined;
+  autoComplete?: string | undefined;
+  textarea?: boolean | undefined;
 }) {
   const id = label.toLowerCase().replace(/[^a-z]+/g, "-");
   const base = cn(

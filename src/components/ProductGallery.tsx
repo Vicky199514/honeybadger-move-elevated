@@ -8,7 +8,7 @@ export function ProductGallery({
 }: {
   images: ProductImage[];
   /** Photo of the currently selected colourway — shown first when present. */
-  colourImage?: ProductImage;
+  colourImage?: ProductImage | undefined;
 }) {
   const gallery = useMemo(
     () => (colourImage ? [colourImage, ...images] : images),
