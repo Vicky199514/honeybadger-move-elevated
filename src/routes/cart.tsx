@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { Lock, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { COD_FEE, formatPrice, paymentMethods } from "@/data/products";
 import { useCart } from "@/lib/cart";
 import { cn } from "@/lib/utils";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 const title = "Your cart — Honey Badger Outfits";
 const description =
@@ -145,20 +144,14 @@ function CartPage() {
                 </div>
               </dl>
 
-              <WhatsAppButton
-                size="lg"
-                className="mt-6 w-full"
-                order={{
-                  product: items.map((item) => `${item.productName} — ${item.packLabel} × ${item.quantity} (Size ${item.size}, ${item.colours.join("/")})`).join("; "),
-                  quantity: items.reduce((sum, item) => sum + item.quantity, 0),
-                  payment: paymentMethods.find((method) => method.id === payment)!.label,
-                  total: formatPrice(total),
-                }}
+              <Link
+                to="/checkout"
+                className="mt-6 inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-sm bg-accent px-7 font-display text-sm font-bold tracking-[0.16em] text-accent-foreground uppercase transition-colors hover:bg-accent/90"
               >
-                Place order
-              </WhatsAppButton>
+                <Lock className="size-4" /> Checkout
+              </Link>
               <p className="mt-3 text-xs text-muted-foreground">
-                We confirm your order and delivery details before dispatch.
+                Enter your delivery details on the next step. We confirm every order before dispatch.
               </p>
             </aside>
           </div>

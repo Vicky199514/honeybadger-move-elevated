@@ -2,6 +2,11 @@ import wardrobeAsset from "@/assets/wardrobe-colours.jpg.asset.json";
 import foldedStackAsset from "@/assets/folded-stack.png.asset.json";
 import rearPanelAsset from "@/assets/rear-panel-detail.png.asset.json";
 import specGuideAsset from "@/assets/spec-guide.png.asset.json";
+import colourBlackAsset from "@/assets/colour-black.jpg.asset.json";
+import colourNavyAsset from "@/assets/colour-navy.jpg.asset.json";
+import colourOliveAsset from "@/assets/colour-olive.jpg.asset.json";
+import colourCharcoalAsset from "@/assets/colour-charcoal.jpg.asset.json";
+import colourSkyAsset from "@/assets/colour-sky.jpg.asset.json";
 
 export const productPhotos = {
   wardrobe: wardrobeAsset.url,
@@ -27,7 +32,7 @@ export type Product = {
   price: number;
   compareAtPrice?: number;
   images: ProductImage[];
-  colours: { name: string; hex: string }[];
+  colours: Colourway[];
   sizes: string[];
   features: string[];
   fabric: string;
@@ -37,14 +42,20 @@ export type Product = {
   available: boolean;
 };
 
+export type Colourway = { name: string; hex: string; image: string };
+
 /** The five essential colourways, as listed on the product spec sheet. */
-export const colourways = [
-  { name: "Black", hex: "#111111" },
-  { name: "Navy Blue", hex: "#1B2A4A" },
-  { name: "Olive Green", hex: "#4A5233" },
-  { name: "Charcoal Grey", hex: "#3A3A3C" },
-  { name: "Sky Blue", hex: "#8FB4D9" },
+export const colourways: Colourway[] = [
+  { name: "Black", hex: "#111111", image: colourBlackAsset.url },
+  { name: "Navy Blue", hex: "#1B2A4A", image: colourNavyAsset.url },
+  { name: "Olive Green", hex: "#4A5233", image: colourOliveAsset.url },
+  { name: "Charcoal Grey", hex: "#3A3A3C", image: colourCharcoalAsset.url },
+  { name: "Sky Blue", hex: "#8FB4D9", image: colourSkyAsset.url },
 ];
+
+export function getColourway(name: string) {
+  return colourways.find((colour) => colour.name === name);
+}
 
 /** Cash on delivery handling charge, added on top of the pack price. */
 export const COD_FEE = 30;
