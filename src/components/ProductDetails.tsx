@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Check, Minus, Plus, Ruler, ShoppingBag, Truck } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
   COD_FEE,
@@ -15,7 +15,14 @@ import { cn } from "@/lib/utils";
 import { useCart } from "@/lib/cart";
 import { StickyMobileCta } from "@/components/StickyMobileCta";
 
-export function ProductDetails({ product }: { product: Product }) {
+export function ProductDetails({
+  product,
+  onColourChange,
+}: {
+  product: Product;
+  /** Reports the primary selected colour so the gallery can show that photo. */
+  onColourChange?: (colour: string) => void;
+}) {
   const navigate = useNavigate();
   const cart = useCart();
   const [packId, setPackId] = useState(packs[0]!.id);
@@ -23,6 +30,10 @@ export function ProductDetails({ product }: { product: Product }) {
   const [size, setSize] = useState(product.sizes[1] ?? product.sizes[0]!);
   const [payment, setPayment] = useState<PaymentMethod>("prepaid");
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    if (colours[0]) onColourChange?.(colours[0]);
+  }, [colours[0], onColourChange]);
 
   const pack = packs.find((option) => option.id === packId) ?? packs[0]!;
   const multi = pack.quantity > 1;
@@ -75,7 +86,7 @@ export function ProductDetails({ product }: { product: Product }) {
   };
 
   const onBuyNow = () => {
-    if (addToCart()) void navigate({ to: "/cart" });
+    if (addToCart()) void navigate({ to: "/checkout" });
   };
 
   const optionsPanel = (
