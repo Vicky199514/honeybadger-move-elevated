@@ -2,6 +2,11 @@ import wardrobeAsset from "@/assets/wardrobe-colours.jpg.asset.json";
 import foldedStackAsset from "@/assets/folded-stack.png.asset.json";
 import rearPanelAsset from "@/assets/rear-panel-detail.png.asset.json";
 import specGuideAsset from "@/assets/spec-guide.png.asset.json";
+import colourBlackAsset from "@/assets/colour-black.jpg.asset.json";
+import colourNavyAsset from "@/assets/colour-navy.jpg.asset.json";
+import colourOliveAsset from "@/assets/colour-olive.jpg.asset.json";
+import colourCharcoalAsset from "@/assets/colour-charcoal.jpg.asset.json";
+import colourSkyAsset from "@/assets/colour-sky.jpg.asset.json";
 
 export const productPhotos = {
   wardrobe: wardrobeAsset.url,
