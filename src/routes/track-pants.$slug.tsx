@@ -1,8 +1,9 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
+import { useCallback, useState } from "react";
 import { ProductDetails } from "@/components/ProductDetails";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductCard } from "@/components/ProductCard";
-import { getProductBySlug, packs, products } from "@/data/products";
+import { getColourway, getProductBySlug, packs, products } from "@/data/products";
 
 export const Route = createFileRoute("/track-pants/$slug")({
   loader: ({ params }) => {
@@ -59,6 +60,9 @@ export const Route = createFileRoute("/track-pants/$slug")({
 
 function ProductPage() {
   const { product } = Route.useLoaderData();
+  const [colour, setColour] = useState(product.colours[0]!.name);
+  const onColourChange = useCallback((name: string) => setColour(name), []);
+  const selected = getColourway(colour);
   const others = products.filter((item) => item.id !== product.id);
 
   return (
@@ -83,8 +87,19 @@ function ProductPage() {
         </nav>
 
         <div className="shell grid gap-10 pb-16 lg:grid-cols-2 lg:gap-16 lg:pb-24">
-          <ProductGallery images={product.images} />
-          <ProductDetails product={product} />
+          <ProductGallery
+            images={product.images}
+            colourImage={
+              selected
+                ? {
+                    src: selected.image,
+                    alt: `${product.name} in ${selected.name}`,
+                    ratio: "portrait",
+                  }
+                : undefined
+            }
+          />
+          <ProductDetails product={product} onColourChange={onColourChange} />
         </div>
       </div>
 

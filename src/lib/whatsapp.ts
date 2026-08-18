@@ -9,6 +9,8 @@ export type WhatsAppOrder = {
   payment?: string;
   total?: string;
   note?: string;
+  /** Extra pre-formatted lines (checkout: items, address, totals). */
+  details?: string[];
 };
 
 /** Keeps user-supplied values short and free of control characters. */
@@ -32,9 +34,13 @@ export function buildWhatsAppUrl(order: WhatsAppOrder = {}) {
     lines.push(`Quantity: ${Math.min(Math.max(order.quantity ?? 1, 1), 99)}`);
     if (order.payment) lines.push(`Payment: ${clean(order.payment, 60)}`);
     if (order.total) lines.push(`Total: ${clean(order.total, 30)}`);
-    lines.push("", "Please share the order details.");
+    if (order.details?.length) {
+      lines.push("", ...order.details.map((line) => clean(line, 200)));
+    }
+    lines.push("", "Please confirm my order.");
   } else {
     lines.push(order.note ? clean(order.note, 300) : "I would like to know more about Honey Badger menswear.");
+    if (order.details?.length) lines.push("", ...order.details.map((line) => clean(line, 200)));
   }
 
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
