@@ -1,13 +1,30 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { ProductImage } from "@/data/products";
 
-export function ProductGallery({ images }: { images: ProductImage[] }) {
+export function ProductGallery({
+  images,
+  colourImage,
+}: {
+  images: ProductImage[];
+  /** Photo of the currently selected colourway — shown first when present. */
+  colourImage?: ProductImage;
+}) {
+  const gallery = useMemo(
+    () => (colourImage ? [colourImage, ...images] : images),
+    [colourImage, images],
+  );
   const [active, setActive] = useState(0);
-  const current = images[active]!;
+
+  // A new colour selection always shows that colour's photo.
+  useEffect(() => {
+    if (colourImage) setActive(0);
+  }, [colourImage?.src]);
+
+  const current = gallery[Math.min(active, gallery.length - 1)]!;
 
   return (
-    <div>
+    <div className="lg:sticky lg:top-28">
       <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
         <img
           key={current.src}
@@ -23,7 +40,7 @@ export function ProductGallery({ images }: { images: ProductImage[] }) {
       </div>
 
       <ul className="mt-3 grid grid-cols-5 gap-2 sm:gap-3" role="list">
-        {images.map((image, index) => (
+        {gallery.map((image, index) => (
           <li key={image.src + index}>
             <button
               type="button"
