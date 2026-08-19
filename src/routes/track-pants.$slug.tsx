@@ -27,9 +27,9 @@ export const Route = createFileRoute("/track-pants/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "product" },
-        { property: "og:url", content: `/track-pants/${params.slug}` },
+        { property: "og:url", content: `https://honeybadger-move-elevated.lovable.app/track-pants/${params.slug}` },
       ],
-      links: [{ rel: "canonical", href: `/track-pants/${params.slug}` }],
+      links: [{ rel: "canonical", href: `https://honeybadger-move-elevated.lovable.app/track-pants/${params.slug}` }],
       scripts: [
         {
           type: "application/ld+json",

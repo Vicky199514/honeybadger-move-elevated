@@ -13,10 +13,10 @@ export const Route = createFileRoute("/t-shirts")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/t-shirts" },
+      { property: "og:url", content: "https://honeybadger-move-elevated.lovable.app/t-shirts" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/t-shirts" }],
+    links: [{ rel: "canonical", href: "https://honeybadger-move-elevated.lovable.app/t-shirts" }],
   }),
   component: TShirts,
 });
