@@ -12,9 +12,9 @@ export const Route = createFileRoute("/privacy")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/privacy" },
+      { property: "og:url", content: "https://honeybadger-move-elevated.lovable.app/privacy" },
     ],
-    links: [{ rel: "canonical", href: "/privacy" }],
+    links: [{ rel: "canonical", href: "https://honeybadger-move-elevated.lovable.app/privacy" }],
   }),
   component: () => (
     <PolicyPage

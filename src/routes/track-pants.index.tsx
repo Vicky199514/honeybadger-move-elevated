@@ -18,9 +18,9 @@ export const Route = createFileRoute("/track-pants/")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/track-pants" },
+      { property: "og:url", content: "https://honeybadger-move-elevated.lovable.app/track-pants" },
     ],
-    links: [{ rel: "canonical", href: "/track-pants" }],
+    links: [{ rel: "canonical", href: "https://honeybadger-move-elevated.lovable.app/track-pants" }],
   }),
   component: TrackPants,
 });

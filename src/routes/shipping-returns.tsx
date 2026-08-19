@@ -12,9 +12,9 @@ export const Route = createFileRoute("/shipping-returns")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/shipping-returns" },
+      { property: "og:url", content: "https://honeybadger-move-elevated.lovable.app/shipping-returns" },
     ],
-    links: [{ rel: "canonical", href: "/shipping-returns" }],
+    links: [{ rel: "canonical", href: "https://honeybadger-move-elevated.lovable.app/shipping-returns" }],
   }),
   component: () => (
     <PolicyPage
