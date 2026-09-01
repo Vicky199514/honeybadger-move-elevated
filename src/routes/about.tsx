@@ -59,10 +59,6 @@ function About() {
               We keep the range small on purpose. Every piece has to earn its place on fabric, fit
               and finish before we release it.
             </p>
-            <p className="text-sm text-muted-foreground">
-              PLACEHOLDER — add your founding story, location and manufacturing details when you're
-              ready to share them.
-            </p>
             <WhatsAppButton size="lg">Talk to us on WhatsApp</WhatsAppButton>
           </Reveal>
         </div>
