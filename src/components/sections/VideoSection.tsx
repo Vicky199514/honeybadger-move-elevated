@@ -1,4 +1,5 @@
 import { Check, LockKeyhole, MoveDiagonal, Wind } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { productPhotos } from "@/data/products";
 import { Reveal } from "@/components/Reveal";
 
@@ -37,15 +38,18 @@ export function VideoSection() {
                 [Wind, "Breathable knit", "Light, quick-drying comfort."],
                 [LockKeyhole, "Secure right pocket", "Zip away your phone or keys."],
                 [Check, "Clean rear panel", "No rear pockets. No extra bulk."],
-              ].map(([Icon, title, copy]) => (
+              ].map(([Icon, title, copy]) => {
+                const FeatureIcon = Icon as LucideIcon;
+                return (
                 <li key={title as string} className="flex gap-3">
-                  <Icon className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
+                  <FeatureIcon className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
                   <div>
                     <p className="font-display text-xs font-bold tracking-[0.12em] uppercase">{title as string}</p>
                     <p className="mt-1 text-sm text-muted-foreground">{copy as string}</p>
                   </div>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           </div>
         </Reveal>
