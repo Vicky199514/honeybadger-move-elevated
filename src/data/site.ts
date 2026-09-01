@@ -10,8 +10,7 @@ export const site = {
   name: "Honey Badger Outfits",
   shortName: "Honey Badger",
   tagline: "Men's wear built for movement.",
-  /** PLACEHOLDER — replace with your live domain once published. */
-  url: "",
+  url: "https://honeybadger-move-elevated.lovable.app",
   email: "hello@honeybadgeroutfits.com", // PLACEHOLDER
   instagram: "https://instagram.com/", // PLACEHOLDER — add your handle
   instagramHandle: "@honeybadgeroutfits", // PLACEHOLDER

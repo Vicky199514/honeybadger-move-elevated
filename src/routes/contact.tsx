@@ -3,7 +3,7 @@ import { Instagram, Mail } from "lucide-react";
 import { WhatsAppButton, WhatsAppGlyph } from "@/components/WhatsAppButton";
 import { site } from "@/data/site";
 
-const title = "Contact Honey Badger Outfits — Order on WhatsApp";
+const title = "Contact Honey Badger Outfits — Customer Support";
 const description =
   "Message Honey Badger Outfits on WhatsApp or Instagram for sizing help, order details and delivery questions.";
 
@@ -41,7 +41,7 @@ function Contact() {
             <WhatsAppGlyph className="size-5 text-accent" />
             <h2 className="mt-5 text-lg">WhatsApp</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Orders and quick questions. PLACEHOLDER — add your business number in site.ts.
+              Orders, sizing and quick questions. Our support team will help you choose the right option.
             </p>
             <WhatsAppButton className="mt-5" />
           </div>
@@ -50,7 +50,7 @@ function Contact() {
             <Instagram className="size-5 text-accent" strokeWidth={1.5} />
             <h2 className="mt-5 text-lg">Instagram</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              New drops and product videos. {site.instagramHandle} (PLACEHOLDER)
+              New drops and product videos. Follow {site.instagramHandle} for updates.
             </p>
             <a
               href={site.instagram}
@@ -66,7 +66,7 @@ function Contact() {
             <Mail className="size-5 text-accent" strokeWidth={1.5} />
             <h2 className="mt-5 text-lg">Email</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              For anything longer. {site.email} (PLACEHOLDER)
+              For anything longer or for order support. {site.email}
             </p>
             <a
               href={`mailto:${site.email}`}

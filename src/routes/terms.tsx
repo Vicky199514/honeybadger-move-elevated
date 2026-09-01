@@ -20,11 +20,11 @@ export const Route = createFileRoute("/terms")({
     <PolicyPage
       eyebrow="Legal"
       title="Terms"
-      intro="PLACEHOLDER — this page needs your final terms of sale."
+      intro="These terms explain the basics of browsing, ordering and communicating with Honey Badger Outfits."
       sections={[
-        { heading: "Orders", body: "PLACEHOLDER — how an order is confirmed and paid for." },
-        { heading: "Pricing", body: "PLACEHOLDER — pricing, taxes and any shipping charges." },
-        { heading: "Liability", body: "PLACEHOLDER — add your liability terms." },
+        { heading: "Orders", body: "Adding an item to your cart creates an order request, not a final confirmation. We review the delivery details and confirm availability, payment method and dispatch information with you before fulfilment." },
+        { heading: "Pricing", body: "Displayed prices are in Indian rupees. The selected pack price is shown in your cart and checkout summary. Cash on delivery adds the ₹30 handling charge shown before you submit the order request." },
+        { heading: "Product information", body: "We aim to keep product descriptions, colour references and size information accurate. Colours can appear differently across screens; use the product images and size guide together when choosing." },
       ]}
     />
   ),

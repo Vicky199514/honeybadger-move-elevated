@@ -103,7 +103,7 @@ export const products: Product[] = [
     subtitle: "Five colourways · zipped right pocket · clean rear panel",
     description:
       "Built around one idea: nothing should restrict how you move. Four-way ultra-stretch lycra with high elasticity, a breathable quick-dry handfeel, a secure zipped right pocket for your phone and a clean rear panel with no pockets for an uninterrupted line.",
-    price: 1499, // PLACEHOLDER price
+    price: 1499,
     images: [
       {
         src: wardrobeAsset.url,
@@ -148,7 +148,7 @@ export const products: Product[] = [
       "Tumble dry low or line dry",
       "Warm iron if needed — avoid direct heat on the logo",
     ],
-    delivery: "PLACEHOLDER — delivery timelines and shipping charges to be confirmed.",
+    delivery: "Delivery timing and availability are confirmed with you before dispatch. COD orders include a ₹30 handling charge.",
     available: true,
   },
 ];

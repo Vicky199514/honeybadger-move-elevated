@@ -4,6 +4,7 @@ import { ProductDetails } from "@/components/ProductDetails";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductCard } from "@/components/ProductCard";
 import { getColourway, getProductBySlug, packs, products } from "@/data/products";
+import { TrustStrip } from "@/components/TrustStrip";
 
 export const Route = createFileRoute("/track-pants/$slug")({
   loader: ({ params }) => {
@@ -102,6 +103,8 @@ function ProductPage() {
           <ProductDetails product={product} onColourChange={onColourChange} />
         </div>
       </div>
+
+      <TrustStrip />
 
       {others.length ? (
         <section className="border-t border-border bg-bone py-14 md:py-20" aria-labelledby="more-title">

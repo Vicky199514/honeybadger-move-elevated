@@ -20,11 +20,11 @@ export const Route = createFileRoute("/shipping-returns")({
     <PolicyPage
       eyebrow="Orders"
       title="Shipping & Returns"
-      intro="PLACEHOLDER — confirm your shipping and returns policy before going live."
+      intro="Delivery and post-purchase support are confirmed directly with you so we can verify the address, serviceability and selected size."
       sections={[
-        { heading: "Shipping", body: "PLACEHOLDER — delivery timelines, courier partners and shipping charges." },
-        { heading: "Returns", body: "PLACEHOLDER — return window, condition requirements and who pays return shipping." },
-        { heading: "Exchanges", body: "PLACEHOLDER — size exchange process." },
+        { heading: "Shipping", body: "We confirm delivery timing, serviceability and any applicable shipping charge before dispatch. Please provide a complete address and 6-digit PIN code at checkout. Cash on delivery orders include the ₹30 handling charge shown in your total." },
+        { heading: "Returns", body: "If there is a problem with your order, contact our team promptly with your order details and clear photos where useful. Any return or refund eligibility is reviewed based on the item condition and the circumstances of the request." },
+        { heading: "Exchanges", body: "For a size exchange, contact us as soon as possible after delivery. Items should be unworn, unwashed and in their original condition; exchange availability is confirmed by our team before the next step." },
       ]}
     />
   ),

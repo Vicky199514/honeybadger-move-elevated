@@ -1,14 +1,13 @@
 export type FaqItem = { question: string; answer: string };
 
 /**
- * Any answer that depends on policy we have not confirmed is marked
- * PLACEHOLDER — replace with your real terms before going live.
+ * Keep policy answers aligned with the confirmed business process.
  */
 export const faqs: FaqItem[] = [
   {
     question: "What fabric is used?",
     answer:
-      "4-way ultra-stretch lycra — high elasticity, breathable and quick-drying, with strong shape retention. PLACEHOLDER — exact composition and fabric weight to be confirmed.",
+      "4-way ultra-stretch lycra — high elasticity, breathable and quick-drying, with strong shape retention.",
   },
   {
     question: "Does the track pant have stretch?",
@@ -42,7 +41,7 @@ export const faqs: FaqItem[] = [
   {
     question: "Do you offer cash on delivery?",
     answer:
-      "Yes. Cash on delivery adds a ₹30 handling charge on top of the price — prepaid orders have no extra charge. Pick your payment method on the product page and it is included in the WhatsApp message.",
+      "Yes. Cash on delivery adds a ₹30 handling charge on top of the price. Prepaid orders have no extra charge, and your selection is shown in the checkout summary.",
   },
   {
     question: "Is Honey Badger only track pants?",
@@ -52,14 +51,14 @@ export const faqs: FaqItem[] = [
   {
     question: "How do I place an order?",
     answer:
-      "Choose your option (1 pc, 3 pcs or 5 pcs), colour, size and payment method, then tap Order on WhatsApp. Everything including your total is filled in automatically — send the message and we confirm the rest with you directly.",
+      "Choose your option (1 pc, 3 pcs or 5 pcs), colour, size and payment method, then add it to your cart. Review your details at checkout and submit the order request for confirmation.",
   },
   {
     question: "Do you offer returns or exchanges?",
-    answer: "PLACEHOLDER — return and exchange policy to be confirmed.",
+    answer: "If you need a size exchange, contact us as soon as possible after delivery with your order details. Eligibility depends on the item's condition and available stock; the final process is confirmed directly with our team.",
   },
   {
     question: "How long does delivery take?",
-    answer: "PLACEHOLDER — delivery timelines and shipping charges to be confirmed.",
+    answer: "Delivery timing, serviceability and any applicable shipping charge are confirmed with you before dispatch. Enter your complete PIN code at checkout so we can verify the address.",
   },
 ];

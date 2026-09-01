@@ -6,6 +6,7 @@ import { GalleryStrip } from "@/components/sections/GalleryStrip";
 import { Colourways } from "@/components/sections/Colourways";
 import { Categories } from "@/components/sections/Categories";
 import { PricingOptions } from "@/components/sections/PricingOptions";
+import { TrustStrip } from "@/components/TrustStrip";
 
 import { BrandSection } from "@/components/sections/BrandSection";
 import { VideoSection } from "@/components/sections/VideoSection";
@@ -17,7 +18,7 @@ import { faqs } from "@/data/faq";
 
 const title = "Honey Badger Outfits — Men's Wear | Ultra-Stretch Track Pants";
 const description =
-  "Honey Badger Outfits is a men's wear label. First up: 4-way ultra-stretch lycra track pants from ₹350, with 3 pc and 5 pc combos. Order on WhatsApp.";
+  "Honey Badger Outfits is a men's wear label. First up: 4-way ultra-stretch lycra track pants from ₹350, with 3 pc and 5 pc combos. Shop online with prepaid or COD.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -52,6 +53,7 @@ function Home() {
   return (
     <>
       <Hero />
+      <TrustStrip />
       <FeatureGrid />
       <Categories />
       <FeaturedProduct />
